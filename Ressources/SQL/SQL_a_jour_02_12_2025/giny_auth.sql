@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 --
 
 INSERT INTO `accounts` (`Id`, `Username`, `Password`, `LastSelectedServerId`, `IPs`, `CharactersSlots`, `Banned`, `Role`, `Nickname`, `Ogrines`) VALUES
-(1, 'admin', 'test', 291, '127.0.0.1,192.168.1.254,192.168.1.194,185.133.80.194,37.166.27.12,192.168.1.141', 15, 0, 5, 'Street', 600),
+(1, 'admin', 'test', 291, '127.0.0.1', 15, 0, 5, 'Street', 600),
 (2, 'admin2', 'test', 291, '127.0.0.1', 5, 0, 5, 'Skinz', 0);
 
 -- --------------------------------------------------------
