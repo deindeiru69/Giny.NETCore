@@ -541,16 +541,44 @@ namespace Giny.World.Managers.Fights
 
             // Synchronize();
 
-            this.Send(new GameFightTurnStartMessage(this.FighterPlaying.Id, Fight.TurnTime * 10));
-
-            // DEBUG Phase 4.1 — Hero Mode : trace le tour de chaque CharacterFighter
-            // appartenant à un HeroGroup (leader vs héros).
+            // Hero Mode — IMPORTANT : poser le contrôle + basculer le contexte
+            // client AVANT le GameFightTurnStartMessage. Si on l'envoie après,
+            // le client fige son état "spectateur" sur le GameFightTurnStart
+            // (le héros n'est pas encore un fighter qu'il contrôle) puis ignore
+            // le SlaveSwitchContext qui arrive trop tard.
             if (FighterPlaying is CharacterFighter _cf && _cf.Character.Client?.HeroGroup != null)
             {
-                bool _isLeader = _cf.Character == _cf.Character.Client.HeroGroup.Leader;
+                var _client = _cf.Character.Client;
+                bool _isLeader = _cf.Character == _client.HeroGroup.Leader;
                 Logger.Write($"(Fight) Turn started: {_cf.Character.Name} (id={_cf.Character.Id}) — {(_isLeader ? "LEADER" : "HERO")}", Channels.Info);
-                _cf.Character.Reply($"Tour de {_cf.Character.Name} {(_isLeader ? "(leader)" : "(héros)")}");
+
+                // Fighter contrôlé au tour précédent (avant écrasement).
+                var _previous = _client.ControlledFighter;
+
+                // Phase 4.2 (A.4) — ce client pilote désormais le fighter qui joue.
+                _client.ControlledFighter = FighterPlaying;
+
+                if (_cf.Character != _client.Character)
+                {
+                    // Phase 4.2 (B.3) — tour d'un héros : bascule le contexte
+                    // client (sorts / stats) vers ce héros.
+                    _cf.SwitchContextToHero();
+                }
+                else if (_previous != null && _previous != _cf)
+                {
+                    // Phase 4.2 (B.4) — retour au perso actif après le tour d'un
+                    // héros : sortir du mode slave pour que le client retrouve
+                    // ses propres sorts / stats. master/slave doivent matcher la
+                    // paire envoyée par SwitchContextToHero (master = leader).
+                    var _leaderFighter = _client.HeroGroup.Leader?.Fighter;
+                    if (_leaderFighter != null)
+                    {
+                        _client.Send(new SlaveNoLongerControledMessage(_leaderFighter.Id, _previous.Id));
+                    }
+                }
             }
+
+            this.Send(new GameFightTurnStartMessage(this.FighterPlaying.Id, Fight.TurnTime * 10));
 
             using (SequenceManager.StartSequence(SequenceTypeEnum.SEQUENCE_TURN_START))
             {
@@ -1080,11 +1108,21 @@ namespace Giny.World.Managers.Fights
 
             long targetMapId = TargetMapId.HasValue ? TargetMapId.Value : Map.Id;
 
+            // Hero Mode (Phase 4.2 A.5) — reset du fighter contrôlé en fin de
+            // combat, dédupliqué par client (héros multiples = même client).
+            var _resetClients = new HashSet<Giny.World.Network.WorldClient>();
+
             foreach (CharacterFighter current in this.GetFighters<CharacterFighter>(false))
             {
                 bool winner = current.Team == Winners ? true : false;
 
                 current.Character.Record.FightId = null;
+
+                var _cl = current.Character.Client;
+                if (_cl != null && _cl.HeroGroup != null && _resetClients.Add(_cl))
+                {
+                    _cl.ControlledFighter = null;
+                }
 
                 current.Character.RejoinMap(targetMapId, FightType, winner, SpawnJoin);
             }

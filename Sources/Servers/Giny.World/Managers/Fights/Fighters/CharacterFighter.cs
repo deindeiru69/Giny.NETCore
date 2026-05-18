@@ -487,6 +487,64 @@ namespace Giny.World.Managers.Fights.Fighters
             }
         }
 
+        /// <summary>
+        /// Hero Mode (Phase 4.2) — bascule le contexte client (sorts / stats /
+        /// raccourcis) vers ce héros au début de son tour. Réutilise le protocole
+        /// SlaveSwitchContextMessage, conçu à l'origine pour les invocations
+        /// contrôlées : le client le traite de la même façon, master = leader.
+        /// </summary>
+        public void SwitchContextToHero()
+        {
+            var heroGroup = Character.Client?.HeroGroup;
+
+            if (heroGroup == null)
+                return;
+
+            var leaderFighter = heroGroup.Leader?.Fighter;
+
+            if (leaderFighter == null)
+                return;
+
+            var slaveTurn = Fight.Timeline.RoundNumber;
+
+            if (Fight.Timeline.Index < Fight.Timeline.IndexOf(this))
+            {
+                slaveTurn++;
+            }
+
+            var msg = new SlaveSwitchContextMessage(
+                leaderFighter.Id,
+                this.Id,
+                (short)slaveTurn,
+                GetHeroSpellItems(),
+                this.Stats.GetCharacterCharacteristicsInformations(heroGroup.Leader),
+                GetHeroShortcuts());
+
+            Character.Client.Send(msg);
+        }
+
+        private SpellItem[] GetHeroSpellItems()
+        {
+            return GetSpells().Select(x => new SpellItem(x.Id, GetSpell(x.Id).Level.Grade)).ToArray();
+        }
+
+        private Shortcut[] GetHeroShortcuts()
+        {
+            SpellRecord[] spells = GetSpells().ToArray();
+            Shortcut[] results = new Shortcut[spells.Length];
+
+            for (byte i = 0; i < spells.Length; i++)
+            {
+                results[i] = new ShortcutSpell()
+                {
+                    slot = i,
+                    spellId = spells[i].Id,
+                };
+            }
+
+            return results;
+        }
+
         public override FightTeamMemberInformations GetFightTeamMemberInformations()
         {
             return new FightTeamMemberCharacterInformations()

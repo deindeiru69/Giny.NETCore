@@ -25,11 +25,19 @@ namespace Giny.World.Handlers.Fights
                 return;
             }
 
-            Fighter target = client.Character.Fighter.Fight.GetFighter<Fighter>(x => x.Id == (long)message.targetId);
+            // Hero Mode (Phase 4.2) — l'auteur de l'action = le fighter contrôlé
+            // (héros dont c'est le tour), sinon le perso actif.
+            var fighter = client.GetActiveFighter();
+            if (fighter == null)
+            {
+                return;
+            }
+
+            Fighter target = fighter.Fight.GetFighter<Fighter>(x => x.Id == (long)message.targetId);
 
             if (target != null)
             {
-                client.Character.Fighter.CastSpell(message.spellId, target.Cell.Id);
+                fighter.CastSpell(message.spellId, target.Cell.Id);
             }
         }
         [MessageHandler]
@@ -40,7 +48,7 @@ namespace Giny.World.Handlers.Fights
                 return;
             }
 
-            client.Character.Fighter.CastSpell(message.spellId, message.cellId);
+            client.GetActiveFighter()?.CastSpell(message.spellId, message.cellId);
         }
         [MessageHandler]
         public static void HandleGameContextQuitMessage(GameContextQuitMessage message, WorldClient client)
@@ -139,7 +147,11 @@ namespace Giny.World.Handlers.Fights
         {
             if (client.Character.Fighting)
             {
-                client.Character.Fighter.Team.ShowCell(client.Character.Fighter, message.cellId);
+                var fighter = client.GetActiveFighter();
+                if (fighter != null)
+                {
+                    fighter.Team.ShowCell(fighter, message.cellId);
+                }
             }
         }
         [MessageHandler]
@@ -153,9 +165,14 @@ namespace Giny.World.Handlers.Fights
         [MessageHandler]
         public static void HandleGameActionAcknowledgementMessage(GameActionAcknowledgementMessage message, WorldClient client)
         {
-            if (message.valid && client.Character.Fighting && client.Character.Fighter.IsFighterTurn)
+            if (!message.valid || !client.Character.Fighting)
+                return;
+
+            var fighter = client.GetActiveFighter() as CharacterFighter;
+
+            if (fighter != null && fighter.IsFighterTurn)
             {
-                client.Character.Fighter.Fight.SequenceManager.AcknowledgeAction(client.Character.Fighter, message.actionId);
+                fighter.Fight.SequenceManager.AcknowledgeAction(fighter, message.actionId);
             }
         }
         [MessageHandler]
@@ -164,7 +181,7 @@ namespace Giny.World.Handlers.Fights
             if (!client.Character.Fighting)
                 return;
 
-            client.Character.Fighter.PassTurn();
+            client.GetActiveFighter()?.PassTurn();
         }
         [MessageHandler]
         public static void HandleGameFightTurnReadyMessage(GameFightTurnReadyMessage message, WorldClient client)
@@ -172,7 +189,7 @@ namespace Giny.World.Handlers.Fights
             if (!client.Character.Fighting)
                 return;
 
-            client.Character.Fighter.ToggleTurnReady(message.isReady);
+            (client.GetActiveFighter() as CharacterFighter)?.ToggleTurnReady(message.isReady);
         }
     }
 }

@@ -1,5 +1,6 @@
 using Giny.ORM;
 using Giny.World.Managers.Entities.Characters;
+using Giny.World.Managers.Parties;
 using Giny.World.Network;
 using Giny.World.Records.Characters;
 using System;
@@ -53,10 +54,55 @@ namespace Giny.World.Game.Heroes
         public Character Leader
             => Members.FirstOrDefault(c => c.Id == Record.LeaderId);
 
+        /// <summary>
+        /// Party "système" regroupant les héros pour l'affichage UI (panneau de
+        /// groupe). Null tant qu'elle n'a pas été créée (EnsureParty) ou si le
+        /// groupe n'a qu'un seul membre.
+        /// </summary>
+        public Party HeroParty
+        {
+            get;
+            private set;
+        }
+
         public HeroGroup(WorldClient client, HeroGroupRecord record)
         {
             Client = client;
             Record = record;
+        }
+
+        /// <summary>
+        /// Crée (une seule fois) la Party système qui regroupe tous les héros,
+        /// pour qu'ils apparaissent dans le panneau de groupe du client.
+        /// Idempotent : ne fait rien si la Party existe déjà ou si le groupe
+        /// n'a qu'un membre. À appeler quand le perso actif est en jeu.
+        /// </summary>
+        public void EnsureParty()
+        {
+            if (HeroParty != null)
+                return;
+
+            if (Members.Count < 2)
+                return;
+
+            var leader = Leader ?? Members[0];
+
+            var party = PartyManager.Instance.CreateParty(leader);
+            party.IsHeroParty = true;
+
+            // Leader d'abord, puis les autres héros — ajout direct, sans
+            // mécanisme d'invitation.
+            party.AddMember(leader);
+
+            foreach (var hero in Members)
+            {
+                if (hero != leader)
+                {
+                    party.AddMember(hero);
+                }
+            }
+
+            HeroParty = party;
         }
 
         /// <summary>

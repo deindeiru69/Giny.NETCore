@@ -75,15 +75,23 @@ namespace Giny.World.Network
         }
 
         /// <summary>
-        /// Hero Mode (Phase 4.1) — fighter actuellement piloté par ce client en
-        /// combat, quand ce n'est pas celui de Character. Null = comportement
-        /// normal (le client pilote Character.Fighter). Câblé en Phase 4.2.
+        /// Hero Mode — fighter actuellement piloté par ce client en combat,
+        /// quand ce n'est pas celui de Character. Null = comportement normal
+        /// (le client pilote Character.Fighter).
         /// </summary>
         public Giny.World.Managers.Fights.Fighters.Fighter? ControlledFighter
         {
             get;
             set;
         }
+
+        /// <summary>
+        /// Fighter que les handlers de combat doivent considérer comme l'auteur
+        /// d'une action. = ControlledFighter (héros dont c'est le tour) si défini,
+        /// sinon Character.Fighter (comportement legacy hors Hero Mode).
+        /// </summary>
+        public Giny.World.Managers.Fights.Fighters.Fighter? GetActiveFighter()
+            => ControlledFighter ?? Character?.Fighter;
 
         public WorldClient(Socket socket) : base(socket)
         {

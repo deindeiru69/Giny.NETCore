@@ -100,9 +100,17 @@ namespace Giny.World.Managers.Fights.Synchronisation
                 }
                 else
                 {
+                    // Hero Mode (Phase 4.2) — déduplication par client : les
+                    // héros d'un même joueur partagent le WorldClient, sans ça
+                    // le "En attente du joueur" est affiché N fois.
+                    var _syncClients = new HashSet<Giny.World.Network.WorldClient>();
+
                     foreach (CharacterFighter current in this.m_fighters)
                     {
-                        current.Character.Client.Send(new GameFightTurnReadyRequestMessage(m_fight.FighterPlaying.Id));
+                        if (_syncClients.Add(current.Character.Client))
+                        {
+                            current.Character.Client.Send(new GameFightTurnReadyRequestMessage(m_fight.FighterPlaying.Id));
+                        }
                     }
 
                     this.m_timer = new ActionTimer(timeout, this.TimedOut, false);
@@ -126,7 +134,13 @@ namespace Giny.World.Managers.Fights.Synchronisation
             {
                 if (ready && this.m_fighters.Contains(actor))
                 {
-                    this.m_fighters.Remove(actor);
+                    // Hero Mode (Phase 4.2) — un seul WorldClient pilote tous ses
+                    // héros ; un unique ack du client vaut donc pour l'ensemble
+                    // de ses fighters dans ce synchronizer. Sans ça les héros
+                    // non-contrôlés restent "non prêts" → timeout + "En attente".
+                    // Pour un joueur sans héros, ne retire que lui (aucun impact).
+                    var client = actor.Character.Client;
+                    this.m_fighters.RemoveAll(f => f.Character.Client == client);
                 }
                 else
                 {

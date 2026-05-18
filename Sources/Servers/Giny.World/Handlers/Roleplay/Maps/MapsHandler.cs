@@ -87,12 +87,15 @@ namespace Giny.World.Handlers.Maps
         {
             if (client.Character.Fighting)
             {
-                if (client.Character.Fighter.Fight.StartAcknowledged)
+                // Hero Mode (Phase 4.2) — déplacement attribué au fighter contrôlé.
+                var fighter = client.GetActiveFighter();
+
+                if (fighter != null && fighter.Fight.StartAcknowledged)
                 {
                     List<short> path = PathReader.FightMove(PathReader.ReturnDispatchedCells(message.keyMovements)).Keys.ToList();
 
                     IEnumerable<CellRecord> cells = path.Select(x => client.Character.Map.GetCell(x));
-                    client.Character.Fighter.Move(cells.ToList());
+                    fighter.Move(cells.ToList());
                 }
             }
             else

@@ -1321,6 +1321,8 @@ namespace Giny.World.Managers.Entities.Characters
             if (!Fighting && Client.HeroGroup != null && Client.Character == this)
             {
                 Client.HeroGroup.MaterializeOnMap();
+                // Phase 4.2 (C) — crée la Party système des héros (idempotent).
+                Client.HeroGroup.EnsureParty();
             }
             if (HasParty)
             {

@@ -28,6 +28,17 @@ namespace Giny.World.Managers.Parties
             get;
             set;
         }
+
+        /// <summary>
+        /// Hero Mode (Phase 4.2) — true si la Party est générée automatiquement
+        /// pour un HeroGroup. Une telle Party est verrouillée : le joueur ne peut
+        /// ni la quitter, ni inviter, ni kicker, ni abdiquer via l'UI.
+        /// </summary>
+        public bool IsHeroParty
+        {
+            get;
+            set;
+        }
         public abstract PartyTypeEnum Type
         {
             get;
@@ -83,7 +94,7 @@ namespace Giny.World.Managers.Parties
             this.Members = new ConcurrentDictionary<long, Character>();
             this.Guests = new ConcurrentDictionary<long, Character>();
             this.Leader = leader;
-            this.Id = Id;
+            this.Id = partyId; // fix : était "this.Id = Id" (typo — toute Party avait Id=0)
             this.PartyName = "";
 
             OnLeaderUpdated();
@@ -410,9 +421,16 @@ namespace Giny.World.Managers.Parties
          */
         public void Send(NetworkMessage message)
         {
+            // Hero Mode (Phase 4.2) — déduplication par Client : les héros d'un
+            // HeroGroup partagent le même WorldClient.
+            var sentClients = new HashSet<WorldClient>();
+
             foreach (var member in Members)
             {
-                member.Value.Client.Send(message);
+                if (sentClients.Add(member.Value.Client))
+                {
+                    member.Value.Client.Send(message);
+                }
             }
         }
         public void SendGuests(NetworkMessage message)

@@ -16,6 +16,13 @@ namespace Giny.World.Handlers.Roleplay.Parties
         [MessageHandler]
         public static void HandlePartyInvitationRequest(PartyInvitationRequestMessage message, WorldClient client)
         {
+            // Hero Mode (Phase 4.2) — la Party des héros est un système fermé.
+            if (client.Character.Party?.IsHeroParty == true)
+            {
+                client.Character.ReplyWarning("Tu ne peux pas inviter dans ton groupe de héros.");
+                return;
+            }
+
             WorldClient target = WorldServer.Instance.GetClient(message.target);
 
             if (target != null)
@@ -80,6 +87,12 @@ namespace Giny.World.Handlers.Roleplay.Parties
         {
             if (client.Character.HasParty)
             {
+                if (client.Character.Party.IsHeroParty)
+                {
+                    client.Character.ReplyWarning("Tu ne peux pas quitter ton groupe de héros.");
+                    return;
+                }
+
                 client.Character.Party.Leave(client.Character);
             }
             else
@@ -92,6 +105,12 @@ namespace Giny.World.Handlers.Roleplay.Parties
         {
             if (client.Character.HasParty)
             {
+                if (client.Character.Party.IsHeroParty)
+                {
+                    client.Character.ReplyWarning("Le chef du groupe de héros se change avec .heroleader.");
+                    return;
+                }
+
                 var target = client.Character.Party.GetMember((long)message.playerId);
 
                 if (target != null)
@@ -107,6 +126,12 @@ namespace Giny.World.Handlers.Roleplay.Parties
         {
             if (client.Character.HasParty)
             {
+                if (client.Character.Party.IsHeroParty)
+                {
+                    client.Character.ReplyWarning("Tu ne peux pas exclure un héros du groupe.");
+                    return;
+                }
+
                 var target = client.Character.Party.GetMember((long)message.playerId);
 
                 if (target != null)
