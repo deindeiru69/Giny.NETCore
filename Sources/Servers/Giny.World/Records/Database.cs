@@ -25,7 +25,7 @@ namespace Giny.World.Records
             WorldConfig config = ConfigManager<WorldConfig>.Instance;
 
             DatabaseManager.Instance.Initialize(Assembly.GetExecutingAssembly(), config.SQLHost,
-               config.SQLDBName, config.SQLUser, config.SQLPassword);
+               config.SQLDBName, config.SQLUser, config.SQLPassword, config.SQLPort);
 
             DatabaseManager.Instance.LoadTables();
 

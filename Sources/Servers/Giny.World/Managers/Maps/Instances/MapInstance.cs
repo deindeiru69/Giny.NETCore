@@ -141,10 +141,15 @@ namespace Giny.World.Managers.Maps.Instances
         }
         private void ShowActor(Entity actor)
         {
+            // Envoi direct par-client (corrige un broadcast multiple présent à
+            // l'origine) et respecte la visibilité conditionnelle (Hero Mode).
             foreach (var character in GetEntities<Character>())
             {
+                if (!actor.IsVisibleTo(character))
+                    continue;
+
                 var informations = actor.GetActorInformations(character);
-                Send(new GameRolePlayShowActorMessage(informations));
+                character.Client.Send(new GameRolePlayShowActorMessage(informations));
             }
         }
         private void OnEntitiesUpdated()
@@ -165,7 +170,16 @@ namespace Giny.World.Managers.Maps.Instances
 
             if (m_entities.TryRemove(entityId, out result))
             {
-                this.Send(new GameContextRemoveElementMessage(result.Id));
+                // N'informe que les clients qui voyaient l'entité (cohérent avec
+                // le filtre ShowActor : si tu ne l'as jamais vue, tu n'as pas à
+                // recevoir l'ordre de la retirer).
+                foreach (var character in GetEntities<Character>())
+                {
+                    if (!result.IsVisibleTo(character))
+                        continue;
+
+                    character.Client.Send(new GameContextRemoveElementMessage(result.Id));
+                }
                 OnEntitiesUpdated();
             }
         }
@@ -294,7 +308,12 @@ namespace Giny.World.Managers.Maps.Instances
         }
         protected GameRolePlayActorInformations[] GetGameRolePlayActorsInformations(Character target)
         {
-            return m_entities.Values.Select(x => x.GetActorInformations(target)).ToArray();
+            // Filtre la liste vue par target : un viewer ne reçoit que les
+            // entités qui lui sont visibles (Hero Mode + future invisibilité GM).
+            return m_entities.Values
+                .Where(x => x.IsVisibleTo(target))
+                .Select(x => x.GetActorInformations(target))
+                .ToArray();
         }
         protected MapObstacle[] GetMapObstacles()
         {

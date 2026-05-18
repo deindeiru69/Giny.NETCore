@@ -2,6 +2,7 @@
 using Giny.Auth.Network;
 using Giny.Auth.Network.IPC;
 using Giny.Auth.Records;
+using Giny.Auth.Security;
 using Giny.Core;
 using Giny.Core.Cryptography;
 using Giny.Core.Extensions;
@@ -183,7 +184,7 @@ namespace Giny.Auth.Handlers
 
             AccountRecord account = AccountRecord.ReadAccount(username);
 
-            if (account == null || account.Password != password)
+            if (account == null || !PasswordHasher.Verify(password, account.Password))
             {
                 client.OnIdentificationFailed(IdentificationFailureReasonEnum.WRONG_CREDENTIALS);
                 client.Disconnect();
@@ -194,6 +195,15 @@ namespace Giny.Auth.Handlers
                 client.OnIdentificationFailed(IdentificationFailureReasonEnum.BANNED);
                 client.Disconnect();
                 return;
+            }
+
+            // Migration transparente : promote le compte legacy à BCrypt après
+            // une auth réussie au format clair.
+            if (!PasswordHasher.IsHashed(account.Password))
+            {
+                account.Password = PasswordHasher.Hash(password);
+                account.UpdateNow();
+                Logger.Write($"(Auth) Password migrated to BCrypt for account #{account.Id} ({account.Username}).", Channels.Info);
             }
 
             client.AssignAccount(account);

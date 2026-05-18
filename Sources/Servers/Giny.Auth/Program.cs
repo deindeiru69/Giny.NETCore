@@ -37,7 +37,7 @@ namespace Giny.Auth
             AuthConfig config = ConfigManager<AuthConfig>.Instance;
 
             DatabaseManager.Instance.Initialize(Assembly.GetExecutingAssembly(), config.SQLHost,
-               config.SQLDBName, config.SQLUser, config.SQLPassword);
+               config.SQLDBName, config.SQLUser, config.SQLPassword, config.SQLPort);
             DatabaseManager.Instance.LoadTables();
         }
         [StartupInvoke("Protocol", StartupInvokePriority.Initial)]

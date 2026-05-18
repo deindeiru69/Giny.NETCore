@@ -373,7 +373,9 @@ namespace Giny.World.Managers.Entities.Characters
             set;
         }
         [Annotation("pokefus , companions (verification cellule)")]
-        public int FighterCount => 1;
+        // Hero Mode (Phase 4.1) : nombre de cellules de placement à réserver.
+        // = nombre de héros du groupe si présent, sinon 1.
+        public int FighterCount => Client?.HeroGroup?.Members.Count ?? 1;
 
         public Character(WorldClient client, CharacterRecord record) : base(null)
         {
@@ -1005,7 +1007,13 @@ namespace Giny.World.Managers.Entities.Characters
 
                 this.Record.MapId = teleportMap.Id;
                 if (Map != null)
+                {
+                    // Hero Mode — retirer les héros avant que l'actif quitte la map.
+                    if (Client.HeroGroup != null && Client.Character == this)
+                        Client.HeroGroup.DematerializeFromMap();
+
                     Map.Instance.RemoveEntity(this.Id);
+                }
 
                 CurrentMapMessage(teleportMap.Id);
             }
@@ -1189,6 +1197,36 @@ namespace Giny.World.Managers.Entities.Characters
             OnConnected();
 
         }
+
+        /// <summary>
+        /// Rejoue le flow d'init UI envoyé après une CharacterSelection (notifs,
+        /// CharacterSelectedSuccess, capabilities, achievements/jobs/spells/...).
+        /// Extrait de CharacterHandler.ProcessSelection pour pouvoir être réutilisé
+        /// lors d'un switch de perso actif via le HeroGroup (Phase 3.3).
+        /// </summary>
+        public void RebuildSessionUI()
+        {
+            Client.Send(new NotificationListMessage(new int[] { int.MaxValue }));
+            Client.Send(new CharacterSelectedSuccessMessage(Record.GetCharacterBaseInformations(false), false));
+            Client.Send(new CharacterCapabilitiesMessage(4095));
+            Client.Send(new SequenceNumberRequestMessage());
+
+            // -- Do not change order --
+            RefreshAchievements();
+            RefreshJobs();
+            RefreshSpells();
+            RefreshGuild();
+            RefreshEmotes();
+            CreateHumanOptions();
+            Inventory.Refresh();
+            Inventory.ApplyEquipementItemsEffects();
+            RefreshStats(); // après ApplyEquipementItemsEffects pour inclure les bonus d'équipement
+            RefreshShortcuts();
+            RefreshArenaInfos();
+            SendKnownZaapList();
+            SendServerExperienceModificator();
+            OnCharacterLoadingComplete();
+        }
         private void OnConnected()
         {
             TextInformation(TextInformationTypeEnum.TEXT_INFORMATION_ERROR, 89, new string[0]); // not only when just created in th
@@ -1278,6 +1316,12 @@ namespace Giny.World.Managers.Entities.Characters
                 Client.Send(new BasicNoOperationMessage());
                 Client.Send(new BasicTimeMessage(DateTime.Now.GetUnixTimeStampDouble(), 1));
             }
+            // Hero Mode (Phase 3.1) — pose les héros (non-actifs) sur la map du
+            // perso actif, hidden pour les autres clients.
+            if (!Fighting && Client.HeroGroup != null && Client.Character == this)
+            {
+                Client.HeroGroup.MaterializeOnMap();
+            }
             if (HasParty)
             {
                 Party.UpdateMember(this);
@@ -1311,6 +1355,10 @@ namespace Giny.World.Managers.Entities.Characters
             }
             else
             {
+                // Hero Mode — retirer les héros avant que l'actif soit retiré.
+                if (Client?.HeroGroup != null && Client.Character == this)
+                    Client.HeroGroup.DematerializeFromMap();
+
                 Map?.Instance?.RemoveEntity(this.Id);
             }
         }
@@ -1769,6 +1817,12 @@ namespace Giny.World.Managers.Entities.Characters
 
             this.MovementKeys = null;
             this.IsMoving = false;
+
+            // Hero Mode — retirer les héros avant que l'actif entre en combat
+            // (Phase 3.1 : pas de gameplay combat pour eux ; ils disparaissent).
+            if (Client.HeroGroup != null && Client.Character == this)
+                Client.HeroGroup.DematerializeFromMap();
+
             this.Map.Instance.RemoveEntity(this.Id);
             this.DestroyContext();
             this.CreateContext(GameContextEnum.FIGHT);

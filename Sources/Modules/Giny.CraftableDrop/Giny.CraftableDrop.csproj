@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <MakeDir Directories="$(SolutionDir)\Servers\Giny.World\bin\Debug\net6.0\Modules" />
     <Exec Command="copy &quot;$(TargetDir)\Giny.CraftableDrop.dll&quot; &quot;$(SolutionDir)\Servers\Giny.World\bin\Debug\net6.0\Modules\Giny.CraftableDrop.dll&quot;" />
   </Target>
 

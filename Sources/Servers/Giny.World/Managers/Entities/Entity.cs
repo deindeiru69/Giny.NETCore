@@ -45,6 +45,28 @@ namespace Giny.World.Managers.Entities
             set;
         }
 
+        /// <summary>
+        /// Visibilité conditionnelle : si true, l'entité n'est broadcastée qu'au
+        /// HiddenOwner. Reste dans m_entities pour la cohérence serveur (FoV,
+        /// pathfinding, etc.) mais invisible côté autres clients.
+        /// Hors Hero Mode : false par défaut → comportement identique à l'origine.
+        /// </summary>
+        public bool IsHidden
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Seul client autorisé à voir l'entité quand IsHidden==true. Null +
+        /// IsHidden==true ⇒ invisible pour tous.
+        /// </summary>
+        public WorldClient HiddenOwner
+        {
+            get;
+            set;
+        }
+
         public abstract DirectionsEnum Direction
         {
             get;
@@ -63,6 +85,18 @@ namespace Giny.World.Managers.Entities
         }
 
         public abstract GameRolePlayActorInformations GetActorInformations(Character target);
+
+        /// <summary>
+        /// Visibilité de l'entité pour un viewer donné. Hors Hero Mode toutes les
+        /// entités sont visibles. Avec IsHidden==true, seul HiddenOwner voit.
+        /// </summary>
+        public virtual bool IsVisibleTo(Character viewer)
+        {
+            if (!IsHidden)
+                return true;
+
+            return HiddenOwner != null && HiddenOwner == viewer.Client;
+        }
 
         public void SendMap(NetworkMessage message)
         {

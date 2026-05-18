@@ -543,6 +543,15 @@ namespace Giny.World.Managers.Fights
 
             this.Send(new GameFightTurnStartMessage(this.FighterPlaying.Id, Fight.TurnTime * 10));
 
+            // DEBUG Phase 4.1 — Hero Mode : trace le tour de chaque CharacterFighter
+            // appartenant à un HeroGroup (leader vs héros).
+            if (FighterPlaying is CharacterFighter _cf && _cf.Character.Client?.HeroGroup != null)
+            {
+                bool _isLeader = _cf.Character == _cf.Character.Client.HeroGroup.Leader;
+                Logger.Write($"(Fight) Turn started: {_cf.Character.Name} (id={_cf.Character.Id}) — {(_isLeader ? "LEADER" : "HERO")}", Channels.Info);
+                _cf.Character.Reply($"Tour de {_cf.Character.Name} {(_isLeader ? "(leader)" : "(héros)")}");
+            }
+
             using (SequenceManager.StartSequence(SequenceTypeEnum.SEQUENCE_TURN_START))
             {
                 FighterPlaying.IsSequencingTurnStart = true;

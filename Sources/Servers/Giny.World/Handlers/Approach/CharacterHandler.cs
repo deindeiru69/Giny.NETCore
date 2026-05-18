@@ -8,6 +8,7 @@ using Giny.Protocol.Enums;
 using Giny.Protocol.IPC.Messages;
 using Giny.Protocol.Messages;
 using Giny.Protocol.Types;
+using Giny.World.Game.Heroes;
 using Giny.World.Managers;
 using Giny.World.Managers.Breeds;
 using Giny.World.Managers.Entities.Characters;
@@ -182,6 +183,31 @@ namespace Giny.World.Handlers.Approach
             }
 
             client.Character = new Character(client, record);
+
+            // Hero Mode (Phase 1) — attache le HeroGroup de l'account si présent.
+            // À ce stade on charge uniquement le record + la liste des CharacterRecord
+            // membres. Les Character pleins seront matérialisés en Phase 2.
+            var groupRecord = HeroGroupRecord.GetByAccountId(client.Account.Id);
+            if (groupRecord != null)
+            {
+                client.HeroGroup = new HeroGroup(client, groupRecord);
+                client.HeroGroup.Load();
+
+                if (client.Character.Id == groupRecord.LeaderId)
+                {
+                    Logger.Write(
+                        $"(HeroGroup) Account {client.Account.Id} loaded HeroGroup {groupRecord.Id} with {client.HeroGroup.MemberRecords.Count} members.",
+                        Channels.Info);
+                }
+            }
+            else
+            {
+                client.HeroGroup = null;
+                Logger.Write(
+                    $"(HeroGroup) Account {client.Account.Id} : HeroGroup is null (no row in hero_groups).",
+                    Channels.Info);
+            }
+
             ProcessSelection(client);
         }
 
@@ -222,34 +248,9 @@ namespace Giny.World.Handlers.Approach
         }
         private static void ProcessSelection(WorldClient client)
         {
-
-            client.Send(new NotificationListMessage(new int[] { 2147483647 }));
-
-
-            client.Send(new CharacterSelectedSuccessMessage(client.Character.Record.GetCharacterBaseInformations(false),
-               false));
-
-            client.Send(new CharacterCapabilitiesMessage(4095));
-            client.Send(new SequenceNumberRequestMessage());
-
-
-
-            /*
-             * -- Do not change order --
-             */
-            client.Character.RefreshAchievements();
-            client.Character.RefreshJobs();
-            client.Character.RefreshSpells();
-            client.Character.RefreshGuild();
-            client.Character.RefreshEmotes();
-            client.Character.CreateHumanOptions();
-            client.Character.Inventory.Refresh();
-            client.Character.Inventory.ApplyEquipementItemsEffects();
-            client.Character.RefreshShortcuts();
-            client.Character.RefreshArenaInfos();
-            client.Character.SendKnownZaapList();
-            client.Character.SendServerExperienceModificator();
-            client.Character.OnCharacterLoadingComplete();
+            // Délègue à Character.RebuildSessionUI pour permettre la réutilisation
+            // depuis le HeroGroup.SwitchActive (Phase 3.3).
+            client.Character.RebuildSessionUI();
         }
 
     }

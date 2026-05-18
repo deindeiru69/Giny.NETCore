@@ -44,6 +44,17 @@
 
                 </MudListItem>
 
+                <MudListItem OnClick="RegisterClick">
+                    <div class="d-flex align-center gap-3">
+                        <MudIcon Icon="@Icons.Material.Outlined.AppRegistration" Color="Color.Primary"></MudIcon>
+                        <div class="d-flex flex-column ">
+                            <MudText Style="font-weight:500">Créer un nouveau compte</MudText>
+                        </div>
+
+                    </div>
+
+                </MudListItem>
+
             </MudList>
         </MudPaper>
 
@@ -77,6 +88,12 @@
         this.Cancel();
 
         MainLayout.Navigate(PageEnum.Login);
+    }
+
+    void RegisterClick()
+    {
+        this.Cancel();
+        MainLayout.Navigate(PageEnum.Register);
     }
 
     void DeleteAccount(WebAccount account)

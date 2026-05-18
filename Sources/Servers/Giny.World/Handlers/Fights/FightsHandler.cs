@@ -93,8 +93,33 @@ namespace Giny.World.Handlers.Fights
         [MessageHandler]
         public static void HandleGameFightReady(GameFightReadyMessage message, WorldClient client)
         {
-            if (client.Character.Fighting)
-                client.Character.Fighter.ToggleReady(message.isReady);
+            if (!client.Character.Fighting)
+                return;
+
+            client.Character.Fighter.ToggleReady(message.isReady);
+
+            // Hero Mode (Phase 4.2) — le "prêt" du joueur vaut pour tous ses
+            // héros engagés dans le même combat (ils ne peuvent pas être
+            // ready'd individuellement par le client).
+            if (client.HeroGroup != null)
+            {
+                var fight = client.Character.Fighter.Fight;
+
+                foreach (var hero in client.HeroGroup.Members)
+                {
+                    if (hero == client.Character)
+                        continue;
+
+                    var heroFighter = hero.Fighter;
+
+                    if (heroFighter != null
+                        && heroFighter.Fight == fight
+                        && heroFighter.IsReady != message.isReady)
+                    {
+                        heroFighter.ToggleReady(message.isReady);
+                    }
+                }
+            }
         }
         [MessageHandler]
         public static void HandleGameGameContextKickMessage(GameContextKickMessage message, WorldClient client)

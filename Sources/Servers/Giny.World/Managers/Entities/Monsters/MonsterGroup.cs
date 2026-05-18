@@ -200,7 +200,17 @@ namespace Giny.World.Managers.Monsters
                     fight.BlueTeam.AddFighter(monsterFighter);
                 }
 
-                fight.RedTeam.AddFighter(character.CreateFighter(fight.RedTeam));
+                // Hero Mode (Phase 4.1) — tous les héros du groupe entrent en
+                // combat. Le leader est ajouté en premier (devient FightTeam.Leader).
+                var heroGroup = character.Client.HeroGroup;
+                List<Character> members = heroGroup != null
+                    ? heroGroup.Members.OrderByDescending(m => m == heroGroup.Leader).ToList()
+                    : new List<Character>() { character };
+
+                foreach (var member in members)
+                {
+                    fight.RedTeam.AddFighter(member.CreateFighter(fight.RedTeam));
+                }
 
                 fight.StartPlacement();
 

@@ -113,8 +113,13 @@ namespace Giny.Core.DesignPattern
                         catch (Exception ex)
                         {
                             Logger.Write(ex.ToString(), Channels.Critical);
-                            Console.ReadKey();
-                            Environment.Exit(0);
+                            // Only pause for a key press when an interactive console is attached.
+                            // When stdin is redirected (background launch, CI), Console.ReadKey() throws.
+                            if (!Console.IsInputRedirected)
+                            {
+                                Console.ReadKey();
+                            }
+                            Environment.Exit(1);
                             return;
                         }
                     }

@@ -36,6 +36,7 @@ namespace Giny.Auth.Records
             set;
         }
 
+        [Update]
         public string Password
         {
             get;

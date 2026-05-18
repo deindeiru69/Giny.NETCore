@@ -90,7 +90,15 @@ namespace Giny.Auth.Network
 
         public void GenerateTicket()
         {
-            this.Ticket = new AsyncRandom().RandomString(32);
+            // Crypto-strong : RandomNumberGenerator au lieu de System.Random
+            // (AsyncRandom est seedé sur TickCount+ThreadId, prédictible — un
+            // attaquant qui chronomètre une session peut deviner les tickets).
+            // 32 octets = 256 bits → 43 chars base64url, < 255 (limite byte de
+            // EncryptTicket).
+            Span<byte> bytes = stackalloc byte[32];
+            System.Security.Cryptography.RandomNumberGenerator.Fill(bytes);
+            this.Ticket = Convert.ToBase64String(bytes)
+                .Replace('+', '-').Replace('/', '_').TrimEnd('=');
         }
         public byte[] EncryptTicket()
         {

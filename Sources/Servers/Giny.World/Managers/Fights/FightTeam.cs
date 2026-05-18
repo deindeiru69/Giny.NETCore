@@ -93,9 +93,17 @@ namespace Giny.World.Managers.Fights
         }
         public void Send(NetworkMessage message)
         {
+            // Hero Mode (Phase 4.1) — déduplication par Client : plusieurs héros
+            // du même joueur partagent le même WorldClient ; sans ce HashSet, ce
+            // client recevrait chaque broadcast global du combat N fois.
+            var sentClients = new HashSet<WorldClient>();
+
             foreach (var fighter in GetFighters<CharacterFighter>(false).Where(x => !x.Disconnected))
             {
-                fighter.Character.Client.Send(message);
+                if (sentClients.Add(fighter.Character.Client))
+                {
+                    fighter.Character.Client.Send(message);
+                }
             }
         }
 

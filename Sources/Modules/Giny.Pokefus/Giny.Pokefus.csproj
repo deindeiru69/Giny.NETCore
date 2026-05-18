@@ -11,8 +11,17 @@
     <ProjectReference Include="..\..\Servers\Giny.World\Giny.World.csproj" />
   </ItemGroup>
 
+  <!--
+    PostBuild désactivé : le module Pokefus crashe au démarrage de World
+    (ArgumentOutOfRangeException dans PokefusWishManager.GetCurrentWishData,
+    données manquantes côté pokefus.json). Tant que ce module n'est pas
+    réparé, on évite de le copier dans World/Modules/.
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <MakeDir Directories="$(SolutionDir)\Servers\Giny.World\bin\Debug\net6.0\Modules" />
     <Exec Command="copy &quot;$(TargetDir)\Giny.Pokefus.dll&quot; &quot;$(SolutionDir)\Servers\Giny.World\bin\Debug\net6.0\Modules\Giny.Pokefus.dll&quot;" />
   </Target>
+  -->
+
 
 </Project>

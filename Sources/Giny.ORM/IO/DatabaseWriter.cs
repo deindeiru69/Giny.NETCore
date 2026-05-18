@@ -202,7 +202,12 @@ namespace Giny.ORM.IO
             }
             else if (value is Enum)
             {
-                value = value.ToString();
+                // Sérialise par valeur numérique (et non par nom) : matche les
+                // colonnes SQL Giny qui sont en INT pour les enums. Le Reader
+                // utilise Enum.Parse qui accepte aussi bien "Player" que "1",
+                // donc cette modification est rétro-compatible avec les rows
+                // legacy stockées en VARCHAR.
+                value = Convert.ToInt64((Enum)value);
             }
             else if (property.PropertyType.IsGenericType)
             {

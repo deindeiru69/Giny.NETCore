@@ -41,13 +41,7 @@ namespace Giny.World.Managers.Fights.Effects.Heals
 
             foreach (var target in targets)
             {
-                // Si le combattant a déjà tous ses PV, on ne soigne pas
-                if (target.Stats.LifePoints >= target.Stats.MaxLifePoints)
-                {
-                  Logger.Write($"{target.Name} est déjà à sa vie maximale, soin ignoré.");
-                  continue; // On continue la boucle pour passer au combattant suivant
-                }
-                target.Heal(new Healing(Source, target, element, Effect.Min, Effect.Max, this, fix)); // On soigne le combattant
+                target.Heal(new Healing(Source, target, element, Effect.Min, Effect.Max, this, fix));
             }
         }
     }

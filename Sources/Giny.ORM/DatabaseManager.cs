@@ -15,7 +15,7 @@ namespace Giny.ORM
     {
         public static object DatabaseLocker = new object();
 
-        public const string ConnectionString = "Server={0};UserId={1};Password={2};Database={3}";
+        public const string ConnectionString = "Server={0};Port={4};UserId={1};Password={2};Database={3}";
 
         private MySqlConnection ConnectionProvider
         {
@@ -35,8 +35,11 @@ namespace Giny.ORM
         public event Action<Type, string> OnEndLoadTable;
 
         public void Initialize(Assembly recordsAssembly, string host, string database, string user, string password)
+            => Initialize(recordsAssembly, host, database, user, password, 3306);
+
+        public void Initialize(Assembly recordsAssembly, string host, string database, string user, string password, int port)
         {
-            this.ConnectionProvider = new MySqlConnection(string.Format(ConnectionString, host, user, password, database));
+            this.ConnectionProvider = new MySqlConnection(string.Format(ConnectionString, host, user, password, database, port));
             this.TableTypes = Array.FindAll(recordsAssembly.GetTypes(), x => x.GetInterface("IRecord") != null);
             TableManager.Instance.Initialize(TableTypes);
         }

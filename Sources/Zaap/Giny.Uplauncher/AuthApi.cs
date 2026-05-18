@@ -36,19 +36,24 @@ namespace Giny.Uplauncher
             return result;
         }
 
-        public static async Task<WebAccount?> Register(string username, string password)
+        public static async Task<RegisterResponse> Register(string username, string password)
         {
             dynamic request = new
             {
                 Username = username,
                 Password = password,
             };
-            WebAccount? result = await Http.PostAsync<WebAccount?>($"{Config.GetSelectedHost().GetApiUri()}/account/register", HttpClient, request);
+            RegisterResponse? result = await Http.PostAsync<RegisterResponse?>(
+                $"{Config.GetSelectedHost().GetApiUri()}/account/register", HttpClient, request);
 
-            if (result != null)
-            {
-                result.Password = password;
-            }
+            // Réponse vide / erreur réseau : on remonte un échec générique.
+            if (result == null)
+                return new RegisterResponse { Success = false, Message = "Aucune réponse du serveur." };
+
+            // Conserve le password localement pour les sessions ultérieures
+            // (mêmes mécaniques que Authentificate).
+            if (result.Success && result.Account != null)
+                result.Account.Password = password;
 
             return result;
         }

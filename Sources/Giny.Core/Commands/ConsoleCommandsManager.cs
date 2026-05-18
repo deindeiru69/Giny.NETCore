@@ -50,9 +50,15 @@ namespace Giny.Core.Commands
         {
             while (true)
             {
-                string input = Console.ReadLine();
+                string? input = Console.ReadLine();
 
-                if (input != string.Empty)
+                if (input is null)
+                {
+                    // stdin closed (e.g. process started without attached console) — stop polling.
+                    return;
+                }
+
+                if (input.Length > 0)
                 {
                     Handle(input);
                 }

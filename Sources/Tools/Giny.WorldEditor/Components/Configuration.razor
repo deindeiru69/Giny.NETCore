@@ -208,7 +208,7 @@
     {
         var config = ConfigManager<WorldViewConfig>.Instance;
 
-        var connectionString = string.Format(DatabaseManager.ConnectionString, config.SQLHost, config.SQLUser, config.SQLPassword, config.SQLDBName);
+        var connectionString = string.Format(DatabaseManager.ConnectionString, config.SQLHost, config.SQLUser, config.SQLPassword, config.SQLDBName, 3306);
         using (MySqlConnection connection = new MySqlConnection(connectionString))
         {
             try

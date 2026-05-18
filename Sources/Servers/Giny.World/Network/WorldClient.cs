@@ -16,6 +16,7 @@ using Giny.Protocol.Custom.Enums;
 using Giny.World.Managers.Breeds;
 using Giny.World.Records;
 using Giny.Protocol.Types;
+using Giny.World.Game.Heroes;
 using Giny.World.Managers.Entities.Characters;
 using Giny.World.Records.Characters;
 using Giny.World.Records.Accounts;
@@ -58,6 +59,27 @@ namespace Giny.World.Network
         public bool CharacterSelected => Character != null;
 
         public Character Character
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Groupe de héros attaché à cet account. Null si le compte n'a pas de
+        /// hero_groups row. Initialisé dans le handler de sélection de perso.
+        /// </summary>
+        public HeroGroup? HeroGroup
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Hero Mode (Phase 4.1) — fighter actuellement piloté par ce client en
+        /// combat, quand ce n'est pas celui de Character. Null = comportement
+        /// normal (le client pilote Character.Fighter). Câblé en Phase 4.2.
+        /// </summary>
+        public Giny.World.Managers.Fights.Fighters.Fighter? ControlledFighter
         {
             get;
             set;

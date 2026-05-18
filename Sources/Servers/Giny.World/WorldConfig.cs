@@ -44,6 +44,12 @@ namespace Giny.World
             set;
         } = "127.0.0.1";
 
+        public int SQLPort
+        {
+            get;
+            set;
+        } = 3306;
+
         public string SQLUser
         {
             get;
