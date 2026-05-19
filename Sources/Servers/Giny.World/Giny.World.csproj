@@ -25,6 +25,14 @@
 	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 	  </Content>
 	  <Content Include="world.ico" />
+	  <!-- Hero Mode (Phase 5) — RawPatch UI poussé aux clients, recopié dans
+	       le dossier SWF/ d'exécution à chaque build. -->
+	  <Content Include="..\..\..\Ressources\SWFPatches\HeroPanel\HeroPanel.swf"
+	           Link="SWF\HeroPanel.swf"
+	           Condition="Exists('..\..\..\Ressources\SWFPatches\HeroPanel\HeroPanel.swf')">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
 	</ItemGroup>
 
 	<ItemGroup>

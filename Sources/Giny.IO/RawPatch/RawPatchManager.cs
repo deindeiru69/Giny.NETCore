@@ -44,5 +44,14 @@ namespace Giny.IO.RawPatch
         {
             return m_patches[name];
         }
+        /// <summary>
+        /// Variante sûre : retourne null si le patch n'existe pas, plutôt que de
+        /// lever une KeyNotFoundException. Utilisé pour les patchs optionnels
+        /// (ex. HeroPanel) dont l'absence ne doit pas casser la connexion.
+        /// </summary>
+        public byte[] TryGetRawPatch(string name)
+        {
+            return m_patches != null && m_patches.TryGetValue(name, out var data) ? data : null;
+        }
     }
 }

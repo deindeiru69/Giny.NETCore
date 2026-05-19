@@ -1,4 +1,6 @@
+using Giny.Core.Extensions;
 using Giny.ORM;
+using Giny.Protocol.Messages;
 using Giny.World.Managers.Entities.Characters;
 using Giny.World.Managers.Parties;
 using Giny.World.Network;
@@ -283,6 +285,71 @@ namespace Giny.World.Game.Heroes
             //    (oldActive sera maintenant traité comme un hero hidden).
             target.RebuildSessionUI();
             target.OnEnterMap();
+        }
+
+        /// <summary>
+        /// Retire un héros du groupe : supprime le HeroGroupMemberRecord (DB) et
+        /// dé-matérialise le Character de la map.
+        ///
+        /// Interdit : retirer le leader (transmettre le rôle d'abord) ou le perso
+        /// actif (switcher d'abord). Le caller (commande / handler UI) doit avoir
+        /// vérifié que le character appartient bien au groupe ; on revérifie ici.
+        /// </summary>
+        public void RemoveMember(Character character)
+        {
+            if (character == null)
+                throw new ArgumentNullException(nameof(character));
+
+            if (!Members.Contains(character))
+                throw new InvalidOperationException(
+                    $"Character {character.Id} is not a member of HeroGroup {Record.Id}.");
+
+            if (character.Id == Record.LeaderId)
+                throw new InvalidOperationException(
+                    "Cannot remove the group leader; transfer leadership first.");
+
+            if (Client.Character != null && character.Id == Client.Character.Id)
+                throw new InvalidOperationException(
+                    "Cannot remove the active character; switch first.");
+
+            // Dé-matérialiser le héros de sa map s'il y est posé.
+            if (character.Map != null && character.Map.Instance != null)
+            {
+                character.Map.Instance.RemoveEntity(character.Id);
+            }
+
+            // Supprimer le lien DB (groupe ↔ character).
+            var link = HeroGroupMemberRecord.GetByGroupId(Record.Id)
+                .FirstOrDefault(l => l.CharacterId == character.Id);
+
+            if (link != null)
+                link.RemoveNow();
+
+            Members.Remove(character);
+            MemberRecords.RemoveAll(r => r.Id == character.Id);
+
+            // Retirer le héros du panneau de groupe (Party système). On envoie
+            // un PartyMemberRemoveMessage au client partagé — surtout pas un
+            // PartyLeaveMessage, qui ferait disparaître TOUT le panneau.
+            if (HeroParty != null && HeroParty.GetMember(character.Id) != null)
+            {
+                HeroParty.Members.TryRemove(character.Id);
+                character.Party = null;
+
+                Client.Send(new PartyMemberRemoveMessage()
+                {
+                    partyId = HeroParty.Id,
+                    leavingPlayerId = character.Id,
+                });
+
+                // En dessous de 2 membres, une party n'a plus de sens : on la
+                // dissout (EnsureParty la recréera si le groupe regrandit).
+                if (HeroParty.Count <= 1)
+                {
+                    HeroParty.Delete();
+                    HeroParty = null;
+                }
+            }
         }
 
         /// <summary>

@@ -97,6 +97,17 @@ namespace Giny.World.Network
         {
             base.Send(new HelloGameMessage());
 
+            // Hero Mode (Phase 5) — pousse le patch SWF "panneau héros" dès la
+            // connexion. ServerControlFrame côté client le charge ; le patch
+            // attend ensuite que la stage de jeu soit prête avant de s'afficher.
+            // Patch optionnel : si HeroPanel.swf est absent du dossier SWF, on
+            // ne casse pas la connexion.
+            var heroPatch = Giny.IO.RawPatch.RawPatchManager.Instance.TryGetRawPatch("HeroPanel");
+
+            if (heroPatch != null)
+            {
+                base.Send(new RawDataMessage(heroPatch));
+            }
         }
         public WorldClient()
         {

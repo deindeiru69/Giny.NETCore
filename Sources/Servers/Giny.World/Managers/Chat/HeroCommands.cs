@@ -66,6 +66,18 @@ namespace Giny.World.Managers.Chat
 
             client.Character.Reply(
                 $"HeroGroup créé (#{record.Id}). Leader : {client.Character.Name}.");
+
+            HeroPanelManager.SendState(client);
+        }
+
+        /// <summary>
+        /// Pousse l'état du groupe vers le panneau UI. Émise par le panneau à
+        /// son ouverture ; aucune sortie chat.
+        /// </summary>
+        [ChatCommand("herostate", ServerRoleEnum.Player)]
+        public static void HeroStateCommand(WorldClient client)
+        {
+            HeroPanelManager.SendState(client);
         }
 
         [ChatCommand("heroadd", ServerRoleEnum.Player)]
@@ -113,6 +125,8 @@ namespace Giny.World.Managers.Chat
 
             client.Character.Reply(
                 $"{target.Name} ajouté au groupe (position {group.Members.Count - 1}).");
+
+            HeroPanelManager.SendState(client);
         }
 
         [ChatCommand("heroswitch", ServerRoleEnum.Player)]
@@ -155,6 +169,8 @@ namespace Giny.World.Managers.Chat
 
             group.SwitchActive(target);
             client.Character.Reply($"Actif : {target.Name}.");
+
+            HeroPanelManager.SendState(client);
         }
 
         [ChatCommand("heroleader", ServerRoleEnum.Player)]
@@ -185,6 +201,55 @@ namespace Giny.World.Managers.Chat
 
             group.SetLeader(target);
             client.Character.Reply($"Leader transmis à {target.Name}.");
+
+            HeroPanelManager.SendState(client);
+        }
+
+        [ChatCommand("heroremove", ServerRoleEnum.Player)]
+        public static void HeroRemoveCommand(WorldClient client, string name)
+        {
+            if (client.HeroGroup == null)
+            {
+                client.Character.ReplyWarning("Pas de groupe.");
+                return;
+            }
+
+            var group = client.HeroGroup;
+
+            if (client.Character.Id != group.Record.LeaderId)
+            {
+                client.Character.ReplyWarning("Seul le leader peut retirer un héros.");
+                return;
+            }
+
+            if (client.Character.Fighting)
+            {
+                client.Character.ReplyWarning("Impossible de retirer un héros en combat.");
+                return;
+            }
+
+            var target = group.Members.FirstOrDefault(
+                m => string.Equals(m.Name, name, StringComparison.OrdinalIgnoreCase));
+
+            if (target == null)
+            {
+                client.Character.ReplyError($"{name} n'est pas dans ton groupe.");
+                return;
+            }
+
+            try
+            {
+                group.RemoveMember(target);
+            }
+            catch (InvalidOperationException ex)
+            {
+                client.Character.ReplyWarning(ex.Message);
+                return;
+            }
+
+            client.Character.Reply($"{target.Name} retiré du groupe.");
+
+            HeroPanelManager.SendState(client);
         }
     }
 }
