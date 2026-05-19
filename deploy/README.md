@@ -22,7 +22,12 @@ TLS automatique (Let's Encrypt) et rate limiting par IP. Le launcher s'y
 connecte via `https://deindeiruworld.duckdns.org`.
 
 Les serveurs sont publiés **self-contained** : aucun runtime .NET n'est requis
-sur la VM.
+sur la VM. Le mode `PublishSingleFile` est **désactivé** : `MySql.Data` (driver
+Oracle, version pinned ici) appelle `Assembly.CodeBase` au chargement, ce que
+le bundle single-file de .NET 6 ne supporte pas — l'Auth crashait au démarrage
+sur Linux. Le publish produit donc un dossier multi-fichiers classique (le
+runtime .NET reste embarqué, comportement self-contained inchangé). Réactivation
+possible une fois `MySql.Data` migré vers `MySqlConnector`.
 
 ### Configuration
 
@@ -171,6 +176,7 @@ sudo systemctl start deindeiru-auth && sleep 3 && sudo systemctl start deindeiru
 |----------|-------|
 | `deploy.ps1` : « config.Production.json absent » | Créer le fichier depuis le `.example.json` sur la VM, renseigner `SQLPassword`. |
 | Le service ne démarre pas | `systemctl status deindeiru-world`, puis `logs/world.error.log`. |
+| Crash au boot : `NotSupportedException` mentionnant `Assembly.CodeBase` | `PublishSingleFile` réactivé par erreur — `MySql.Data` ne le supporte pas. Repasser `deploy.ps1` en multi-fichiers (cf. en-tête du fichier). |
 | Erreur de connexion MariaDB | Vérifier `SQLHost/SQLUser/SQLPassword/SQLDBName` dans `config.Production.json` ; base `deindeiruworld` importée. |
 | Le client ne joint pas le World | `PublicHost` doit valoir `deindeiruworld.duckdns.org` dans `world/config.Production.json` ; port 5556 ouvert au pare-feu. |
 | Le client reste bloqué après l'écran serveur | L'Auth annonce le World via `PublicHost` : vérifier que le World a bien fait son handshake IPC (`logs/auth.log`). |

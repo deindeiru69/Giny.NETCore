@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Déploie Giny Auth + World sur la VM cloud Deindeiru-Prod.
 
@@ -44,11 +44,17 @@ function Deploy-Component {
     $publishDir = Join-Path $REPO_ROOT "publish\$Name"
 
     if (-not $SkipBuild) {
-        Write-Host "==> Build $Name (linux-x64 self-contained single-file)..." -ForegroundColor Cyan
+        Write-Host "==> Build $Name (linux-x64 self-contained)..." -ForegroundColor Cyan
         if (Test-Path $publishDir) { Remove-Item -Recurse -Force $publishDir }
+        # PublishSingleFile désactivé : MySql.Data ancien (Oracle) ne supporte
+        # pas le bundle single-file .NET 6 — bug connu avec Assembly.CodeBase
+        # (lance une exception NotSupportedException au chargement du driver).
+        # Migrer vers MySqlConnector à terme permettrait de réactiver
+        # PublishSingleFile=true + IncludeNativeLibrariesForSelfExtract=true.
+        # On garde --self-contained true : le runtime .NET reste embarqué,
+        # donc la VM n'a toujours pas besoin de dotnet installé.
         dotnet publish $ProjectPath `
             -c Release -r linux-x64 --self-contained true `
-            /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true `
             -o $publishDir
         if ($LASTEXITCODE -ne 0) { throw "dotnet publish $Name a échoué" }
     }
@@ -69,7 +75,8 @@ function Deploy-Component {
     if ($LASTEXITCODE -ne 0) { throw "scp $Name a échoué" }
 
     Write-Host "==> Permission d'exécution sur le binaire..." -ForegroundColor Cyan
-    # Le binaire single-file n'a pas le bit +x après un scp depuis Windows.
+    # L'apphost Linux n'a pas le bit +x après un scp depuis Windows (NTFS
+    # ne porte pas les permissions Unix).
     ssh "$VM_USER@$VM_HOST" "chmod +x $RemotePath/$ExeName"
 
     # Point de contrôle : la config de production doit exister sur la VM.
