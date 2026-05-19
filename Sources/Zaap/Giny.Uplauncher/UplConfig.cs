@@ -48,9 +48,20 @@ namespace Giny.Uplauncher
         } = @"C:\Users\olivi\Desktop\Giny .NET Core\Dofus";
 
 
+        // Hôte par défaut : serveur cloud Deindeiru-Prod (VM Hetzner +
+        // reverse proxy Caddy en HTTPS pour l'API). Premier lancement / fresh
+        // install : l'utilisateur n'a rien à configurer, ça pointe direct
+        // sur la prod. L'installeur Inno Setup réécrit aussi config.json
+        // avec ces valeurs (CurStepChanged), donc les deux chemins convergent.
         public List<AuthHost> Hosts = new List<AuthHost>()
         {
-
+            new AuthHost
+            {
+                Ip = "deindeiruworld.duckdns.org",
+                Port = 5555,
+                ApiPort = 9001,
+                ApiBaseUrl = "https://deindeiruworld.duckdns.org",
+            },
         };
         public int HostIndex
         {
@@ -79,7 +90,10 @@ namespace Giny.Uplauncher
             {
                 return null;
             }
-            if (HostIndex > Accounts.Count - 1)
+            // Bug historique : la borne était Accounts.Count - 1 (copié-collé
+            // de GetSelectedAccount). En pratique, HostIndex pouvait pointer
+            // hors-bornes dès qu'on avait plus de hosts que de comptes.
+            if (HostIndex > Hosts.Count - 1)
             {
                 HostIndex = 0;
             }

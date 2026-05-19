@@ -1,6 +1,7 @@
 ﻿@using Giny.Zaap.Accounts;
 @using MudBlazor;
 @using Giny.Core.IO.Configuration;
+@using Giny.IO;
 @using Giny.Uplauncher.Components.Dialogs;
 @using Giny.Zaap;
 @using MudBlazor;
@@ -204,6 +205,13 @@
     {
         StartingClient = true;
 
+        // Re-synchronise connection.host dans le config.xml du client avec
+        // l'hôte sélectionné. Sans ça, le client tape sur la valeur écrite la
+        // dernière fois que l'utilisateur a cliqué "Appliquer" dans Settings
+        // (ou la valeur en dur du config.xml d'origine — souvent obsolète :
+        // localhost ou un ancien IP). Idempotent et silencieux.
+        SyncClientHost();
+
         if (!Config.StartAllInstances)
         {
             await StartClient(Config.GetSelectedAccount());
@@ -220,6 +228,27 @@
 
         StateHasChanged();
 
+    }
+
+    private void SyncClientHost()
+    {
+        var host = Config.GetSelectedHost();
+        if (host == null) return;
+
+        var configPath = Path.Combine(Config.ClientPath, ClientConstants.ConfigPath);
+        if (!File.Exists(configPath)) return;
+
+        try
+        {
+            var configuration = new ClientConfiguration(configPath);
+            configuration.Set("connection.host", host.GetClientUri());
+            configuration.Save();
+        }
+        catch
+        {
+            // Ne bloque pas le lancement si le patch échoue (XML mal formé,
+            // fichier verrouillé, etc.). Le client utilisera l'ancienne valeur.
+        }
     }
 
     private Task StartClient(WebAccount account)

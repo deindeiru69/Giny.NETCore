@@ -38,7 +38,13 @@ function Deploy-Component {
         [string]$ProjectPath,
         [string]$RemotePath,
         [string]$ServiceName,
-        [string]$ExeName
+        [string]$ExeName,
+        # Liste des SWF que ce composant DOIT exposer dans son dossier SWF/
+        # à l'exécution. Vérifiés dans le publish output avant scp pour qu'on
+        # ne livre jamais un binaire orphelin (l'Auth crashe à la connexion
+        # d'un client si AuthPatch.swf manque, le panneau Hero Mode ne
+        # s'affiche pas si HeroPanel.swf manque).
+        [string[]]$RequiredSwfs = @()
     )
 
     $publishDir = Join-Path $REPO_ROOT "publish\$Name"
@@ -61,6 +67,19 @@ function Deploy-Component {
 
     if (-not (Test-Path $publishDir)) {
         throw "publish/$Name introuvable — relancer sans -SkipBuild."
+    }
+
+    # Vérifie que les RawPatch SWF attendus sont bien dans le publish. Les
+    # csproj de Auth/World les incluent en <Content> avec
+    # CopyToPublishDirectory=PreserveNewest depuis Ressources/SWFPatches/ :
+    # si un fichier manque ici, c'est que la source canonique a disparu ou
+    # n'a pas été déplacée — on refuse de livrer pour ne pas casser la VM.
+    foreach ($swf in $RequiredSwfs) {
+        $swfPath = Join-Path $publishDir "SWF\$swf"
+        if (-not (Test-Path $swfPath)) {
+            throw "RawPatch manquant : $swfPath (le publish n'a pas produit le SWF). Vérifier Ressources/SWFPatches/ et le <Content Include> du csproj."
+        }
+        Write-Host "    SWF/$swf  ✓" -ForegroundColor DarkGray
     }
 
     Write-Host "==> Arrêt de $ServiceName sur la VM..." -ForegroundColor Cyan
@@ -108,7 +127,8 @@ if ($Target -in "auth", "all") {
         -ProjectPath "$REPO_ROOT\Sources\Servers\Giny.Auth\Giny.Auth.csproj" `
         -RemotePath "/opt/deindeiru/auth" `
         -ServiceName "deindeiru-auth" `
-        -ExeName "Giny.Auth"
+        -ExeName "Giny.Auth" `
+        -RequiredSwfs @("AuthPatch.swf")
 }
 
 if ($Target -in "world", "all") {
@@ -116,7 +136,8 @@ if ($Target -in "world", "all") {
         -ProjectPath "$REPO_ROOT\Sources\Servers\Giny.World\Giny.World.csproj" `
         -RemotePath "/opt/deindeiru/world" `
         -ServiceName "deindeiru-world" `
-        -ExeName "Giny.World"
+        -ExeName "Giny.World" `
+        -RequiredSwfs @("HeroPanel.swf")
 }
 
 Write-Host "Deploiement termine." -ForegroundColor Green

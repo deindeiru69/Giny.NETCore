@@ -25,6 +25,17 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <!-- SWF unsigned poussé au client à la connexion (RawPatchManager →
+         RawDataMessage). Source canonique versionnée dans
+         Ressources/SWFPatches/AuthPatch/. Recopié dans le dossier SWF/
+         d'exécution à chaque build et inclus dans le publish (donc envoyé
+         à la VM par deploy.ps1 sans étape supplémentaire). -->
+    <Content Include="..\..\..\Ressources\SWFPatches\AuthPatch\AuthPatch.swf"
+             Link="SWF\AuthPatch.swf"
+             Condition="Exists('..\..\..\Ressources\SWFPatches\AuthPatch\AuthPatch.swf')">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

@@ -69,8 +69,11 @@ schéma importé, utilisateur `deindeiru` créé. Clé SSH `~/.ssh/id_ed25519`
    nano /opt/deindeiru/auth/config.Production.json     # renseigner SQLPassword
    nano /opt/deindeiru/world/config.Production.json    # renseigner SQLPassword
    ```
-4. **Patch SWF de l'Auth** — déposer `AuthPatch.swf` dans `/opt/deindeiru/auth/SWF/`
-   (l'Auth en a besoin dès la connexion d'un client).
+4. **(plus rien à faire pour les SWF)** — `AuthPatch.swf` et `HeroPanel.swf`
+   sont versionnés dans `Ressources/SWFPatches/` et inclus en `<Content>`
+   dans les csproj : ils partent automatiquement avec chaque
+   `deploy.ps1`. Si un SWF manque dans le publish, `deploy.ps1` refuse
+   d'envoyer et explique quoi vérifier.
 5. **Relancer le déploiement** — démarre les services :
    ```powershell
    .\deploy.ps1
