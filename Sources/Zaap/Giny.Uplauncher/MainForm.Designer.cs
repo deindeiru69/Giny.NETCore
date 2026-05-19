@@ -37,7 +37,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.FromArgb(30, 30, 30);
-            ClientSize = new Size(1062, 519);
+            ClientSize = new Size(1062, 720);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
