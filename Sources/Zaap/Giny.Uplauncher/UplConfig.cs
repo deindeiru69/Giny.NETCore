@@ -138,8 +138,23 @@ namespace Giny.Uplauncher
             set;
         }
 
+        /// <summary>
+        /// URL de base de l'API Auth. Renseignée en production
+        /// (ex. "https://deindeiruworld.duckdns.org" — via le reverse proxy
+        /// Caddy), elle prime alors sur Ip:ApiPort. Laissée vide en
+        /// développement : on retombe sur http://Ip:ApiPort en local.
+        /// </summary>
+        public string ApiBaseUrl
+        {
+            get;
+            set;
+        }
+
         public string GetApiUri()
         {
+            if (!string.IsNullOrWhiteSpace(ApiBaseUrl))
+                return ApiBaseUrl.TrimEnd('/');
+
             return $"http://{Ip}:{ApiPort}";
         }
         public string GetClientUri()

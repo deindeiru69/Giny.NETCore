@@ -1,0 +1,51 @@
+# Reverse proxy de l'API Auth — VM Deindeiru-Prod.
+#
+# - TLS automatique (Let's Encrypt) sur deindeiruworld.duckdns.org.
+# - Écoute 443 (et 80 pour le challenge ACME + la redirection HTTP->HTTPS).
+# - Route vers l'API Auth, bindée en local sur 127.0.0.1:9001 (jamais exposée).
+# - Rate limiting par IP sur les endpoints sensibles.
+#
+# Le rate limiting nécessite le plugin caddy-ratelimit — voir deploy/README.md
+# (section « Reverse proxy »). Caddy standard ne sait pas rate-limiter.
+
+{
+	# rate_limit (plugin github.com/mholt/caddy-ratelimit) : doit être placé
+	# avant reverse_proxy dans le pipeline HTTP.
+	order rate_limit before reverse_proxy
+}
+
+deindeiruworld.duckdns.org {
+
+	# Login — 5 requêtes / minute / IP.
+	handle /account/auth {
+		rate_limit {
+			zone auth {
+				key    {remote_host}
+				events 5
+				window 1m
+			}
+		}
+		reverse_proxy 127.0.0.1:9001
+	}
+
+	# Création de compte — 2 requêtes / heure / IP.
+	handle /account/register {
+		rate_limit {
+			zone register {
+				key    {remote_host}
+				events 2
+				window 1h
+			}
+		}
+		reverse_proxy 127.0.0.1:9001
+	}
+
+	# Reste de l'API (ex. /version/launcher) — sans limite.
+	handle {
+		reverse_proxy 127.0.0.1:9001
+	}
+
+	log {
+		output file /opt/deindeiru/logs/caddy.access.log
+	}
+}

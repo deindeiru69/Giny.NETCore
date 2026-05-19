@@ -6,6 +6,6 @@
   "SQLUser": "deindeiru",
   "SQLPassword": "CHANGER_AVANT_DEPLOIEMENT",
   "SQLDBName": "deindeiruworld",
-  "APIHost": "0.0.0.0",
+  "APIHost": "127.0.0.1",
   "APIPort": 9001
 }

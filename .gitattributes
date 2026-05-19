@@ -3,3 +3,4 @@
 # shell / systemd échoueraient).
 *.sh        text eol=lf
 *.service   text eol=lf
+Caddyfile   text eol=lf

@@ -8,12 +8,18 @@ Déploiement des serveurs **Auth** et **World** sur la VM Hetzner.
 |----------------|---------------------------------------------------|
 | VM             | Deindeiru-Prod — Ubuntu 26.04 — `178.105.117.203` |
 | Domaine        | `deindeiruworld.duckdns.org`                      |
-| Auth           | port TCP **5555**                                 |
-| World          | port TCP **5556**                                 |
-| API Auth       | port TCP **9001** (le launcher s'y connecte)      |
+| Auth (jeu)     | port TCP **5555**                                 |
+| World (jeu)    | port TCP **5556**                                 |
+| API Auth HTTP  | `127.0.0.1:9001` — **interne**, jamais exposée directement |
+| Reverse proxy  | Caddy sur **443** (HTTPS) → `127.0.0.1:9001`      |
 | MariaDB        | `localhost:3306`, base `deindeiruworld`, user `deindeiru` |
 | Arborescence   | `/opt/deindeiru/{auth,world,logs,backups}`        |
-| Services       | `deindeiru-auth`, `deindeiru-world` (systemd)     |
+| Services       | `deindeiru-auth`, `deindeiru-world`, `caddy` (systemd) |
+
+L'API Auth (création de compte / login du launcher) est bindée en local sur
+`127.0.0.1:9001` et publiée par **Caddy** en HTTPS sur `443` :
+TLS automatique (Let's Encrypt) et rate limiting par IP. Le launcher s'y
+connecte via `https://deindeiruworld.duckdns.org`.
 
 Les serveurs sont publiés **self-contained** : aucun runtime .NET n'est requis
 sur la VM.
@@ -64,7 +70,56 @@ schéma importé, utilisateur `deindeiru` créé. Clé SSH `~/.ssh/id_ed25519`
    ```powershell
    .\deploy.ps1
    ```
-6. **Pare-feu Hetzner** — ouvrir en TCP entrant : **5555**, **5556**, **9001**.
+6. **Reverse proxy** — installer Caddy (voir « Reverse proxy (Caddy) » ci-dessous).
+7. **Pare-feu Hetzner** — ouvrir en TCP entrant : **80**, **443**, **5555**,
+   **5556**. **Ne PAS ouvrir 9001** : l'API n'est jointe que par le proxy
+   local. Le port **80** sert au challenge ACME (Let's Encrypt) et à la
+   redirection HTTP→HTTPS.
+
+## Reverse proxy (Caddy)
+
+L'API Auth est exposée par **Caddy** : HTTPS automatique (Let's Encrypt) et
+rate limiting par IP. L'API elle-même reste bindée sur `127.0.0.1:9001`
+(`APIHost` = `127.0.0.1` dans `auth/config.Production.json`).
+
+Prérequis : le domaine `deindeiruworld.duckdns.org` doit pointer (A record
+DuckDNS) vers l'IP de la VM, et les ports **80**+**443** être ouverts.
+
+1. **Installer Caddy** (dépôt officiel) :
+   ```bash
+   sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
+   curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' \
+     | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+   curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' \
+     | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+   sudo apt update && sudo apt install -y caddy
+   ```
+2. **Ajouter le plugin de rate limiting** (Caddy standard ne sait pas
+   rate-limiter) :
+   ```bash
+   sudo caddy add-package github.com/mholt/caddy-ratelimit
+   ```
+   > Après un `apt upgrade` de Caddy, ré-exécuter cette commande (la mise à
+   > jour apt remplace le binaire et perd le plugin).
+3. **Installer le Caddyfile** (livré dans `deploy/caddy/Caddyfile`) :
+   ```bash
+   sudo cp /tmp/deploy/caddy/Caddyfile /etc/caddy/Caddyfile
+   sudo systemctl restart caddy
+   ```
+   Caddy obtient alors automatiquement le certificat TLS au premier
+   démarrage.
+
+**Rate limits appliqués :** `/account/auth` 5 req/min/IP,
+`/account/register` 2 req/h/IP. Au-delà, Caddy répond `429 Too Many Requests`.
+
+**Renouvellement du certificat :** entièrement automatique (Caddy renouvelle
+~30 jours avant expiration). Aucune tâche cron, rien à faire.
+
+**Tester l'API à travers le proxy :**
+```bash
+curl https://deindeiruworld.duckdns.org/version/launcher      # -> 1.0.0
+ssh deindeiru@deindeiruworld.duckdns.org "tail -f /opt/deindeiru/logs/caddy.access.log"
+```
 
 ## Déployer une mise à jour
 
@@ -121,3 +176,7 @@ sudo systemctl start deindeiru-auth && sleep 3 && sudo systemctl start deindeiru
 | Le client reste bloqué après l'écran serveur | L'Auth annonce le World via `PublicHost` : vérifier que le World a bien fait son handshake IPC (`logs/auth.log`). |
 | L'Auth plante à la connexion d'un client | `SWF/AuthPatch.swf` manquant dans `/opt/deindeiru/auth/`. |
 | `scp`/`ssh` refusés | Clé `~/.ssh/id_ed25519` non autorisée sur la VM pour `deindeiru`. |
+| Caddy ne récupère pas le certificat | Domaine DuckDNS pointant bien vers la VM ? Ports **80** et **443** ouverts ? `sudo journalctl -u caddy -e`. |
+| `caddy: unknown directive rate_limit` | Plugin non installé : `sudo caddy add-package github.com/mholt/caddy-ratelimit` puis `sudo systemctl restart caddy`. |
+| Launcher : « Trop de requêtes » / login en échec en boucle | Rate limit atteint (429) — attendre la fenêtre (1 min pour le login). |
+| Le launcher ne joint pas l'API | `ApiBaseUrl` du launcher doit valoir `https://deindeiruworld.duckdns.org` ; tester `curl https://.../version/launcher`. |
