@@ -38,6 +38,18 @@ namespace Giny.World
             get;
             set;
         } = 5555;
+
+        /// <summary>
+        /// Adresse publique (nom de domaine ou IP) que les clients utilisent
+        /// pour joindre ce World. Annoncée à l'Auth via le handshake IPC, puis
+        /// transmise au client. Distincte de <see cref="Host"/> qui ne sert
+        /// qu'au bind local (souvent 0.0.0.0 en production).
+        /// </summary>
+        public string PublicHost
+        {
+            get;
+            set;
+        } = "127.0.0.1";
         public string SQLHost
         {
             get;

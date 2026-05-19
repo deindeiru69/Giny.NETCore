@@ -1,0 +1,5 @@
+# Fichiers consommés sous Linux : toujours en fin de ligne LF, y compris
+# dans la copie de travail Windows (sinon scp les enverrait en CRLF et le
+# shell / systemd échoueraient).
+*.sh        text eol=lf
+*.service   text eol=lf

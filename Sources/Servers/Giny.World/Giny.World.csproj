@@ -11,10 +11,19 @@
 	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
 	  <None Remove="appsettings.json" />
+	  <None Remove="config.Production.example.json" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Content Include="appsettings.Development.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <!-- Template documentaire de la config de production (overlay appliqué
+	       quand DOTNET_ENVIRONMENT=Production). À copier en config.Production.json
+	       sur la VM puis renseigner. config.Production.json n'est jamais versionné. -->
+	  <Content Include="config.Production.example.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

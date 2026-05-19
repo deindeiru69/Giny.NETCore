@@ -1,0 +1,19 @@
+[Unit]
+Description=Deindeiru Auth Server
+After=network.target mariadb.service
+Wants=mariadb.service
+
+[Service]
+Type=simple
+User=deindeiru
+Group=deindeiru
+WorkingDirectory=/opt/deindeiru/auth
+ExecStart=/opt/deindeiru/auth/Giny.Auth
+Restart=on-failure
+RestartSec=10
+StandardOutput=append:/opt/deindeiru/logs/auth.log
+StandardError=append:/opt/deindeiru/logs/auth.error.log
+Environment=DOTNET_ENVIRONMENT=Production
+
+[Install]
+WantedBy=multi-user.target

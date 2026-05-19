@@ -26,6 +26,16 @@ namespace Giny.Auth.Handlers
             if (IPCServer.Instance.AddClient(message.serverId, client))
             {
                 client.WorldServerRecord = WorldServerRecord.GetWorldServer(message.serverId);
+
+                // Le World annonce son adresse publique : on l'applique au
+                // record en mémoire, c'est elle qui sera transmise aux clients
+                // (SelectedServerDataMessage). Sans ça, un World bindé sur
+                // 0.0.0.0 ferait échouer la connexion côté client.
+                if (client.WorldServerRecord != null && !string.IsNullOrEmpty(message.host))
+                {
+                    client.WorldServerRecord.Host = message.host;
+                    client.WorldServerRecord.Port = message.port;
+                }
             }
         }
         public static void OnServerStatusUpdated(WorldServerRecord server)

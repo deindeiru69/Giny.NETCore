@@ -1,0 +1,20 @@
+[Unit]
+Description=Deindeiru World Server
+After=network.target mariadb.service deindeiru-auth.service
+Wants=mariadb.service
+Requires=deindeiru-auth.service
+
+[Service]
+Type=simple
+User=deindeiru
+Group=deindeiru
+WorkingDirectory=/opt/deindeiru/world
+ExecStart=/opt/deindeiru/world/Giny.World
+Restart=on-failure
+RestartSec=10
+StandardOutput=append:/opt/deindeiru/logs/world.log
+StandardError=append:/opt/deindeiru/logs/world.error.log
+Environment=DOTNET_ENVIRONMENT=Production
+
+[Install]
+WantedBy=multi-user.target

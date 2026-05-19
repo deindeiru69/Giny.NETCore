@@ -1,0 +1,10 @@
+{
+  "Host": "0.0.0.0",
+  "Port": 5556,
+  "PublicHost": "deindeiruworld.duckdns.org",
+  "SQLHost": "127.0.0.1",
+  "SQLPort": 3306,
+  "SQLUser": "deindeiru",
+  "SQLPassword": "CHANGER_AVANT_DEPLOIEMENT",
+  "SQLDBName": "deindeiruworld"
+}

@@ -61,7 +61,10 @@ namespace Giny.World.Network
             var config = ConfigManager<WorldConfig>.Instance;
 
             Logger.Write("Connected to IPCServer");
-            Client.Send(new HandshakeMessage(config.ServerId));
+            // On annonce PublicHost (le nom de domaine / IP que les clients
+            // utiliseront pour joindre le World), pas Host qui ne sert qu'au
+            // bind local et peut valoir 0.0.0.0.
+            Client.Send(new HandshakeMessage(config.ServerId, config.PublicHost, (short)config.Port));
             Connected = true;
 
             if (!WorldServer.Instance.Started)
