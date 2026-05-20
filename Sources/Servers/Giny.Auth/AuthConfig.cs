@@ -75,6 +75,18 @@ namespace Giny.Auth
             set;
         } = 9001;
 
+        /// <summary>
+        /// Path racine du client Dofus déployé sur la VM (doit contenir
+        /// data/i18n/ et data/common/). Utilisé par /client/manifest pour
+        /// exposer le manifeste téléchargeable à l'Uplauncher. Aligné sur
+        /// la même variable côté WorldConfig.
+        /// </summary>
+        public string ClientPath
+        {
+            get;
+            set;
+        } = "/opt/deindeiru/client-data";
+
         public void OnCreated()
         {
             Logger.Write("Configuration file created !");

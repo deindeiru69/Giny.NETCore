@@ -7,5 +7,6 @@
   "SQLPassword": "CHANGER_AVANT_DEPLOIEMENT",
   "SQLDBName": "deindeiruworld",
   "APIHost": "127.0.0.1",
-  "APIPort": 9001
+  "APIPort": 9001,
+  "ClientPath": "/opt/deindeiru/client-data"
 }
