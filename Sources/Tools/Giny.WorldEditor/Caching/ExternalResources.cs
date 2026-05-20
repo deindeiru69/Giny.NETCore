@@ -1,6 +1,8 @@
-﻿using Giny.Core.Network;
+﻿using Giny.Core.IO.Configuration;
+using Giny.Core.Network;
 using Giny.IO;
 using Giny.IO.D2P;
+using Giny.WorldEditor.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +19,11 @@ namespace Giny.WorldEditor.Caching
 
         public static void Initialize()
         {
-            ItemIconsFile = new D2PFile(Path.Combine(ClientConstants.ClientPath, ClientConstants.ItemBitmap0Path));
+            var clientPath = ConfigManager<WorldViewConfig>.Instance.ClientPath;
 
-            MonsterIconsFile = new D2PFile(Path.Combine(ClientConstants.ClientPath,ClientConstants.MonsterBitmap0Path));
+            ItemIconsFile = new D2PFile(Path.Combine(clientPath, ClientConstants.ItemBitmap0Path));
+
+            MonsterIconsFile = new D2PFile(Path.Combine(clientPath, ClientConstants.MonsterBitmap0Path));
         }
 
         public static async Task<string> GetSpellIcon(int iconId)
