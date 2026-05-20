@@ -1,0 +1,64 @@
+{
+  "GeneratedAt": "2026-05-20 15:36:05Z",
+  "ClientPath": "C:\\Users\\dnico\\source\\repos\\Dofus2\\Ressources\\Dofus",
+  "SubAreaCount": 12,
+  "MapCount": 118,
+  "NpcCount": 57,
+  "QuestCount": 20,
+  "ObjectiveTypeCounts": [
+    {
+      "TypeId": 0,
+      "TypeName": "None",
+      "Count": 20,
+      "HandlerImplemented": false
+    },
+    {
+      "TypeId": 6,
+      "TypeName": "DefeatMonsterOneFight",
+      "Count": 16,
+      "HandlerImplemented": false
+    },
+    {
+      "TypeId": 2,
+      "TypeName": "BringItemToNpc",
+      "Count": 16,
+      "HandlerImplemented": false
+    },
+    {
+      "TypeId": 17,
+      "TypeName": "CraftItem",
+      "Count": 15,
+      "HandlerImplemented": false
+    },
+    {
+      "TypeId": 9,
+      "TypeName": "NpcTalkBack",
+      "Count": 13,
+      "HandlerImplemented": true
+    },
+    {
+      "TypeId": 1,
+      "TypeName": "GoToNpc",
+      "Count": 11,
+      "HandlerImplemented": true
+    },
+    {
+      "TypeId": 14,
+      "TypeName": "DefeatMulti",
+      "Count": 5,
+      "HandlerImplemented": false
+    },
+    {
+      "TypeId": 3,
+      "TypeName": "GiveItemToNpc",
+      "Count": 3,
+      "HandlerImplemented": false
+    },
+    {
+      "TypeId": 4,
+      "TypeName": "DiscoverMap",
+      "Count": 1,
+      "HandlerImplemented": false
+    }
+  ]
+}

@@ -1,0 +1,518 @@
+[
+  {
+    "TemplateId": 862,
+    "Name": "Milicien Kerubim Nybi",
+    "Look": "{3198|||93}",
+    "DialogMessagesCount": 9,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 871,
+    "Name": "Laura",
+    "Look": "{1|81,2132,1305|5=#d54be5,2=#eb7313,4=#5d1dcc,1=#f5b95f,6=#df51d9,3=#df51d9|140}",
+    "DialogMessagesCount": 3,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 890,
+    "Name": "Habitué de la taverne",
+    "Look": "{699||3=6453003|90}",
+    "DialogMessagesCount": 5,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 1223,
+    "Name": "Fée Risette",
+    "Look": "{4982}",
+    "DialogMessagesCount": 15,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 1515,
+    "Name": "Fécaline la Sage",
+    "Look": "{1803}",
+    "DialogMessagesCount": 16,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2205,
+    "Name": "Mériana",
+    "Look": "{2501|||80}",
+    "DialogMessagesCount": 254,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2207,
+    "Name": "Orbalantyr",
+    "Look": "{2547}",
+    "DialogMessagesCount": 10,
+    "ActionsAuthorized": [
+      3,
+      17
+    ]
+  },
+  {
+    "TemplateId": 2270,
+    "Name": "Flamme du Dark Vlad",
+    "Look": "{385|||100}",
+    "DialogMessagesCount": 1,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2880,
+    "Name": "Capitaine des Kerubims",
+    "Look": "{229}",
+    "DialogMessagesCount": 27,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2881,
+    "Name": "Pipelette",
+    "Look": "{3200}",
+    "DialogMessagesCount": 4,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2882,
+    "Name": "Xélora Fistol",
+    "Look": "{3201|||85}",
+    "DialogMessagesCount": 5,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2885,
+    "Name": "Grobid",
+    "Look": "{35}",
+    "DialogMessagesCount": 8,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2886,
+    "Name": "Anta Brok",
+    "Look": "{3186|||90}",
+    "DialogMessagesCount": 10,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2887,
+    "Name": "Matu Vuh",
+    "Look": "{3197|||95}",
+    "DialogMessagesCount": 5,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2888,
+    "Name": "Marylork",
+    "Look": "{227|||90}",
+    "DialogMessagesCount": 4,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2890,
+    "Name": "Kandie la serveuse",
+    "Look": "{3194|||103}",
+    "DialogMessagesCount": 3,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2891,
+    "Name": "Pêcheur Gobelin",
+    "Look": "{6243|299|3=9946598,1=8958717|100}",
+    "DialogMessagesCount": 8,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2894,
+    "Name": "Caporale Mynerve",
+    "Look": "{3205|||95}",
+    "DialogMessagesCount": 5,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2895,
+    "Name": "Maître Hoboulo",
+    "Look": "{3196|||95}",
+    "DialogMessagesCount": 6,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2896,
+    "Name": "Maître Darm",
+    "Look": "{3195|||110}",
+    "DialogMessagesCount": 11,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2897,
+    "Name": "Ganymède",
+    "Look": "{4924|||70}",
+    "DialogMessagesCount": 42,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2899,
+    "Name": "Berb Nhin",
+    "Look": "{3187|||80}",
+    "DialogMessagesCount": 36,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2900,
+    "Name": "Gérant de l'hôtel de vente",
+    "Look": "{11}",
+    "DialogMessagesCount": 6,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2902,
+    "Name": "Milicienne Kerubim",
+    "Look": "{3199|||93}",
+    "DialogMessagesCount": 20,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2903,
+    "Name": "Echtelion",
+    "Look": "{1|90,2140,250,115|5=#fa950f,2=#58009f,4=#ff0606,1=#ffc867,3=#f218|140}",
+    "DialogMessagesCount": 1,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2904,
+    "Name": "Oskar Khas",
+    "Look": "{3278|||98}",
+    "DialogMessagesCount": 12,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2905,
+    "Name": "Ternette Nhin",
+    "Look": "{3282}",
+    "DialogMessagesCount": 26,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2906,
+    "Name": "Galilea",
+    "Look": "{3188|||110}",
+    "DialogMessagesCount": 4,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2908,
+    "Name": "Kruella Freuz",
+    "Look": "{3204|||95}",
+    "DialogMessagesCount": 4,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2909,
+    "Name": "Aléha",
+    "Look": "{3291|||90}",
+    "DialogMessagesCount": 14,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2910,
+    "Name": "Hollie Brok",
+    "Look": "{4983}",
+    "DialogMessagesCount": 5,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2913,
+    "Name": "Niko la Flammèche",
+    "Look": "{3275|||80}",
+    "DialogMessagesCount": 3,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2914,
+    "Name": "Pyracelse",
+    "Look": "{385|||80}",
+    "DialogMessagesCount": 1,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2915,
+    "Name": "Pat Hapin",
+    "Look": "{957}",
+    "DialogMessagesCount": 3,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2916,
+    "Name": "Lucie Lure",
+    "Look": "{3272|||80}",
+    "DialogMessagesCount": 4,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2917,
+    "Name": "Nina Chichi",
+    "Look": "{3276|||85}",
+    "DialogMessagesCount": 8,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2918,
+    "Name": "Rodrigo Dillo",
+    "Look": "{3280|||80}",
+    "DialogMessagesCount": 3,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2919,
+    "Name": "Carla Fabrégé",
+    "Look": "{8||2=14824108,3=6174032,4=5648647|130}",
+    "DialogMessagesCount": 3,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2920,
+    "Name": "Benarde Pivote",
+    "Look": "{6203}",
+    "DialogMessagesCount": 3,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2921,
+    "Name": "Joseph Ahistos",
+    "Look": "{3271|||95}",
+    "DialogMessagesCount": 5,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2922,
+    "Name": "Ramille Clodel",
+    "Look": "{3279|||85}",
+    "DialogMessagesCount": 5,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2936,
+    "Name": "Kardorim",
+    "Look": "{3183}",
+    "DialogMessagesCount": 7,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2939,
+    "Name": "Henri Daul",
+    "Look": "{3270|||90}",
+    "DialogMessagesCount": 8,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2940,
+    "Name": "Jonquille",
+    "Look": "{556|||110}",
+    "DialogMessagesCount": 2,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2941,
+    "Name": "Rebecca Risseuz",
+    "Look": "{3265|||80}",
+    "DialogMessagesCount": 7,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2942,
+    "Name": "André Rieur",
+    "Look": "{3314}",
+    "DialogMessagesCount": 2,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2943,
+    "Name": "Alexandra Godinda",
+    "Look": "{1|11,2023,2891|3=3698800,4=3698800|125}",
+    "DialogMessagesCount": 6,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2944,
+    "Name": "Tornazo",
+    "Look": "{706||1=#FFEBCD,2=#FFEBCD,3=#F8BF01|120}",
+    "DialogMessagesCount": 1,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2945,
+    "Name": "Gardien de l'Orme",
+    "Look": "{83|||80}",
+    "DialogMessagesCount": 2,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2947,
+    "Name": "Punition",
+    "Look": "{706||1=#FF8C00,2=#FF8C00,3=#F8BF01|120}",
+    "DialogMessagesCount": 1,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2948,
+    "Name": "Silvin",
+    "Look": "{706||1=16772045,2=16747520,3=16747520|50}",
+    "DialogMessagesCount": 1,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2949,
+    "Name": "Silvette",
+    "Look": "{706||1=16772045,2=16747520,3=16747520|50}",
+    "DialogMessagesCount": 1,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 2950,
+    "Name": "Baffeur",
+    "Look": "{744}",
+    "DialogMessagesCount": 1,
+    "ActionsAuthorized": [
+      3,
+      17
+    ]
+  },
+  {
+    "TemplateId": 3687,
+    "Name": "Orbalantyr de Mériana",
+    "Look": "{2547|||70}",
+    "DialogMessagesCount": 1,
+    "ActionsAuthorized": [
+      3,
+      17
+    ]
+  },
+  {
+    "TemplateId": 4398,
+    "Name": "Portail vers Astrub",
+    "Look": "{4892}",
+    "DialogMessagesCount": 4,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 5336,
+    "Name": "Goultard",
+    "Look": "{7551|||155}",
+    "DialogMessagesCount": 15,
+    "ActionsAuthorized": [
+      3
+    ]
+  },
+  {
+    "TemplateId": 7102,
+    "Name": "Andrée Inkarnay",
+    "Look": "{8||2=16409369,3=2779495,4=16777215|130}",
+    "DialogMessagesCount": 5,
+    "ActionsAuthorized": [
+      3
+    ]
+  }
+]

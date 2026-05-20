@@ -1,0 +1,1482 @@
+[
+  {
+    "QuestId": 1631,
+    "Name": "Réponses à tout",
+    "LevelMin": 2,
+    "LevelMax": 2,
+    "CategoryId": 4,
+    "Followable": true,
+    "StartCriterion": "Qf=1630",
+    "Steps": [
+      {
+        "StepId": 2251,
+        "Name": "Réponses à tout",
+        "DescriptionText": "Avant de quitter le temple céleste, prenez le temps de contempler les Dofus et le Monde des Douze... et n'oubliez pas de saluer votre dieu au passage !",
+        "OptimalLevel": 2,
+        "Objectives": [
+          {
+            "ObjectiveId": 9730,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529432,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9738,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529470,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9739,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529462,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9740,
+            "TypeId": 9,
+            "TypeName": "NpcTalkBack",
+            "Param0": 2897,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1639,
+    "Name": "Transport peu commun",
+    "LevelMin": 3,
+    "LevelMax": 3,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "BT=1",
+    "Steps": [
+      {
+        "StepId": 2259,
+        "Name": "Transport peu commun",
+        "DescriptionText": "Pour en apprendre un peu plus sur la nature des zaaps, ces étranges portes magiques, Ternette Nhin vous a conseillé de rencontrer Xélora Fistol.",
+        "OptimalLevel": 3,
+        "Objectives": [
+          {
+            "ObjectiveId": 9814,
+            "TypeId": 1,
+            "TypeName": "GoToNpc",
+            "Param0": 2882,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153879813,
+            "HandlerImplemented": true
+          },
+          {
+            "ObjectiveId": 9815,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 544342,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153879813,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9816,
+            "TypeId": 9,
+            "TypeName": "NpcTalkBack",
+            "Param0": 2905,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 154010371,
+            "HandlerImplemented": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1642,
+    "Name": "Mise à l'épreuve",
+    "LevelMin": 3,
+    "LevelMax": 3,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "BT=1",
+    "Steps": [
+      {
+        "StepId": 2262,
+        "Name": "Mise à l'épreuve",
+        "DescriptionText": "La Caporale Mynerve va vous faire passer un test d'aptitude afin de déterminer si vous êtes digne d'entrer dans la milice céleste.",
+        "OptimalLevel": 3,
+        "Objectives": [
+          {
+            "ObjectiveId": 9828,
+            "TypeId": 1,
+            "TypeName": "GoToNpc",
+            "Param0": 2894,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153356292,
+            "HandlerImplemented": true
+          },
+          {
+            "ObjectiveId": 9829,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 4098,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153356292,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9830,
+            "TypeId": 1,
+            "TypeName": "GoToNpc",
+            "Param0": 2894,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153356292,
+            "HandlerImplemented": true
+          },
+          {
+            "ObjectiveId": 9831,
+            "TypeId": 9,
+            "TypeName": "NpcTalkBack",
+            "Param0": 2880,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153356294,
+            "HandlerImplemented": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1634,
+    "Name": "Espoirs et tragédies",
+    "LevelMin": 5,
+    "LevelMax": 5,
+    "CategoryId": 4,
+    "Followable": true,
+    "StartCriterion": "Qf=1632",
+    "Steps": [
+      {
+        "StepId": 2254,
+        "Name": "Espoirs et tragédies",
+        "DescriptionText": "Fécaline la Sage semble en connaitre un rayon sur les Dofus : elle vous a conseillé un ouvrage sur le sujet. Vous êtes un héros, ce ne sont pas quelques pages et un peu d'encre qui vont vous faire perdre courage !",
+        "OptimalLevel": 5,
+        "Objectives": [
+          {
+            "ObjectiveId": 9772,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529428,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153356296,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9773,
+            "TypeId": 9,
+            "TypeName": "NpcTalkBack",
+            "Param0": 1515,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153356296,
+            "HandlerImplemented": true
+          },
+          {
+            "ObjectiveId": 9774,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529433,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 154010883,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9775,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529420,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153357316,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9776,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529422,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153879809,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9777,
+            "TypeId": 9,
+            "TypeName": "NpcTalkBack",
+            "Param0": 1515,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153356296,
+            "HandlerImplemented": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1640,
+    "Name": "Des vestiges de légende",
+    "LevelMin": 5,
+    "LevelMax": 5,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "Qf=1639",
+    "Steps": [
+      {
+        "StepId": 2260,
+        "Name": "Des vestiges de légende",
+        "DescriptionText": "Les dieux ont parfois tendance à laisser traîner leurs affaires sur Incarnam. Sans doute est-ce pour marquer les esprits et attiser la ferveur de leurs disciples. Ou peut-être sont-ils simplement distraits, allez savoir.",
+        "OptimalLevel": 5,
+        "Objectives": [
+          {
+            "ObjectiveId": 9817,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529463,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9818,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529464,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9819,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529465,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9820,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529475,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9821,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529478,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9822,
+            "TypeId": 9,
+            "TypeName": "NpcTalkBack",
+            "Param0": 2905,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 154010371,
+            "HandlerImplemented": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1643,
+    "Name": "Champs de bataille",
+    "LevelMin": 5,
+    "LevelMax": 5,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "Qf=1642",
+    "Steps": [
+      {
+        "StepId": 2263,
+        "Name": "Champs de bataille",
+        "DescriptionText": "Le capitaine vous a confié une tâche simple mais utile : montrer aux esprits rebelles qui peuplent les champs qu'il est temps pour eux de s'incarner. L'utilisation de la violence pour les convaincre est hautement recommandée.",
+        "OptimalLevel": 5,
+        "Objectives": [
+          {
+            "ObjectiveId": 9832,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 970,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9833,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 979,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9834,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 980,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9835,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 981,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9836,
+            "TypeId": 9,
+            "TypeName": "NpcTalkBack",
+            "Param0": 2880,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153356294,
+            "HandlerImplemented": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1649,
+    "Name": "Produits naturels",
+    "LevelMin": 5,
+    "LevelMax": 5,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "BT=1",
+    "Steps": [
+      {
+        "StepId": 2269,
+        "Name": "Produits naturels",
+        "DescriptionText": "Afin de tester vos compétences, Berb Nhin vous a demandé de confectionner quelques produits bien connus des artisans d'Incarnam. Les ateliers du village sont à votre disposition, vous pouvez les utiliser pour accomplir votre travail.",
+        "OptimalLevel": 5,
+        "Objectives": [
+          {
+            "ObjectiveId": 9863,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 468,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153354242,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9864,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 1813,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153354246,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9866,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 1182,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153355270,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9867,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2899,
+            "Param1": 468,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9868,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2899,
+            "Param1": 1813,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9870,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2899,
+            "Param1": 1182,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1641,
+    "Name": "Vu du ciel",
+    "LevelMin": 6,
+    "LevelMax": 6,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "Qf=1640",
+    "Steps": [
+      {
+        "StepId": 2261,
+        "Name": "Vu du ciel",
+        "DescriptionText": "Vous êtes du genre à prendre les choses de haut ? Jetez donc un coup d'œil aux longues-vues installées sur les bord de l'île céleste, vous ne serez pas déçu.",
+        "OptimalLevel": 6,
+        "Objectives": [
+          {
+            "ObjectiveId": 9823,
+            "TypeId": 1,
+            "TypeName": "GoToNpc",
+            "Param0": 2887,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 154010374,
+            "HandlerImplemented": true
+          },
+          {
+            "ObjectiveId": 9824,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529449,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 154010374,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9825,
+            "TypeId": 1,
+            "TypeName": "GoToNpc",
+            "Param0": 2906,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 154010113,
+            "HandlerImplemented": true
+          },
+          {
+            "ObjectiveId": 9826,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529450,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 154010113,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9827,
+            "TypeId": 9,
+            "TypeName": "NpcTalkBack",
+            "Param0": 2905,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 154010371,
+            "HandlerImplemented": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1644,
+    "Name": "Coups d'épée dans l'eau",
+    "LevelMin": 6,
+    "LevelMax": 6,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "Qf=1643",
+    "Steps": [
+      {
+        "StepId": 2264,
+        "Name": "Coups d'épée dans l'eau",
+        "DescriptionText": "Le capitaine des Kerubims vous a demandé de mouiller la chemise et de chasser des gloots pour faire un exemple.",
+        "OptimalLevel": 6,
+        "Objectives": [
+          {
+            "ObjectiveId": 9837,
+            "TypeId": 14,
+            "TypeName": "DefeatMulti",
+            "Param0": 4109,
+            "Param1": 2,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9838,
+            "TypeId": 14,
+            "TypeName": "DefeatMulti",
+            "Param0": 4108,
+            "Param1": 2,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9839,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 4110,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9840,
+            "TypeId": 9,
+            "TypeName": "NpcTalkBack",
+            "Param0": 2880,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153356294,
+            "HandlerImplemented": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1650,
+    "Name": "La hache et la pioche",
+    "LevelMin": 6,
+    "LevelMax": 6,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "Qf=1649",
+    "Steps": [
+      {
+        "StepId": 2270,
+        "Name": "La hache et la pioche",
+        "DescriptionText": "La nouvelle tâche demandée par Berb Nhin : couper du bois et extraire du minerai afin de fabriquer une planche et de la ferrite. Les ateliers du village vous permettront de mener ce travail à bien.",
+        "OptimalLevel": 6,
+        "Objectives": [
+          {
+            "ObjectiveId": 9871,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 16489,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153355266,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9872,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 16440,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153355264,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9873,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2899,
+            "Param1": 16489,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9874,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2899,
+            "Param1": 16440,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1655,
+    "Name": "Un peu de pigment",
+    "LevelMin": 6,
+    "LevelMax": 6,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "BT=1",
+    "Steps": [
+      {
+        "StepId": 2275,
+        "Name": "Un peu de pigment",
+        "DescriptionText": "Malgré l'accent prononcé de Marylork, vous avez compris ce dont il avait besoin... Vous voilà donc parti à la chasse aux champignons.",
+        "OptimalLevel": 6,
+        "Objectives": [
+          {
+            "ObjectiveId": 9970,
+            "TypeId": 3,
+            "TypeName": "GiveItemToNpc",
+            "Param0": 2888,
+            "Param1": 16999,
+            "Param2": 3,
+            "Param3": 0,
+            "MapId": 153880325,
+            "HandlerImplemented": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1637,
+    "Name": "La galette secrète",
+    "LevelMin": 7,
+    "LevelMax": 7,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "BT=1",
+    "Steps": [
+      {
+        "StepId": 2257,
+        "Name": "La galette secrète",
+        "DescriptionText": "Anta Brok vous a confié une recette secrète : saurez-vous préparer une galette sans faire de boulette ?",
+        "OptimalLevel": 7,
+        "Objectives": [
+          {
+            "ObjectiveId": 9805,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 551957,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9806,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 16520,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153354242,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9807,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2886,
+            "Param1": 16520,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153879298,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9808,
+            "TypeId": 1,
+            "TypeName": "GoToNpc",
+            "Param0": 2881,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153879811,
+            "HandlerImplemented": true
+          },
+          {
+            "ObjectiveId": 9809,
+            "TypeId": 3,
+            "TypeName": "GiveItemToNpc",
+            "Param0": 2881,
+            "Param1": 421,
+            "Param2": 5,
+            "Param3": 0,
+            "MapId": 153879811,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9810,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2886,
+            "Param1": 16509,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153879298,
+            "HandlerImplemented": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1645,
+    "Name": "Décime-moi des bouftous",
+    "LevelMin": 7,
+    "LevelMax": 7,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "Qf=1644",
+    "Steps": [
+      {
+        "StepId": 2265,
+        "Name": "Décime-moi des bouftous",
+        "DescriptionText": "Votre mission : inciter les esprits des bouftous à abandonner les pâturages célestes pour commencer une nouvelle vie. Avec un peu de chance, si vous parvenez à en faire partir quelques-uns, les autres suivront.",
+        "OptimalLevel": 7,
+        "Objectives": [
+          {
+            "ObjectiveId": 9841,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 972,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9842,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 973,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9843,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 971,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9844,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 984,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9845,
+            "TypeId": 9,
+            "TypeName": "NpcTalkBack",
+            "Param0": 2880,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153356294,
+            "HandlerImplemented": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1651,
+    "Name": "Boune un jour, boune toujours",
+    "LevelMin": 7,
+    "LevelMax": 7,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "Qf=1650",
+    "Steps": [
+      {
+        "StepId": 2271,
+        "Name": "Boune un jour, boune toujours",
+        "DescriptionText": "La panoplie du Boune : un classique indémodable ! Vous allez fabriquer une amulette S'Mesme, un anneau Plussain, des Incrustes, une ceinture Spamette, une cape S'loque et un chapeau Floude. Vous pourrez ensuite vous pavaner avec cette tenue que vous aurez faite vous-même... ou bien la ranger dans un placard.",
+        "OptimalLevel": 7,
+        "Objectives": [
+          {
+            "ObjectiveId": 9875,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 8538,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153355272,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9877,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 8537,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153355272,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9878,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 8535,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153354244,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9879,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 8536,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153354244,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9880,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 8534,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153354244,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9881,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 8533,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153354244,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9882,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2899,
+            "Param1": 8538,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9883,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2899,
+            "Param1": 8537,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9884,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2899,
+            "Param1": 8535,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9885,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2899,
+            "Param1": 8536,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9886,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2899,
+            "Param1": 8534,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9887,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2899,
+            "Param1": 8533,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1635,
+    "Name": "Dans la gueule du Milimilou",
+    "LevelMin": 8,
+    "LevelMax": 8,
+    "CategoryId": 4,
+    "Followable": true,
+    "StartCriterion": "Qf=1634",
+    "Steps": [
+      {
+        "StepId": 2255,
+        "Name": "Dans la gueule du Milimilou",
+        "DescriptionText": "Pour récupérer les Dofus de Hargnok, vous êtes prêt à tout, y compris à affronter le terrible Milimilou. Waouh.",
+        "OptimalLevel": 8,
+        "Objectives": [
+          {
+            "ObjectiveId": 9783,
+            "TypeId": 1,
+            "TypeName": "GoToNpc",
+            "Param0": 2907,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153881600,
+            "HandlerImplemented": true
+          },
+          {
+            "ObjectiveId": 9784,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529486,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153881600,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9785,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529488,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 152836096,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9786,
+            "TypeId": 1,
+            "TypeName": "GoToNpc",
+            "Param0": 2898,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 152836096,
+            "HandlerImplemented": true
+          },
+          {
+            "ObjectiveId": 9787,
+            "TypeId": 9,
+            "TypeName": "NpcTalkBack",
+            "Param0": 1515,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153356296,
+            "HandlerImplemented": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1646,
+    "Name": "Chasse aux chapardams",
+    "LevelMin": 8,
+    "LevelMax": 8,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "Qf=1645",
+    "Steps": [
+      {
+        "StepId": 2266,
+        "Name": "Chasse aux chapardams",
+        "DescriptionText": "Les esprits félins de la forêt d'Incarnam ont besoin d'être réprimandés, sans quoi ils risquent de dépasser les limites. En tant que suppléant de la milice céleste, vous êtes habilité à leur tirer les oreilles, voire les moustaches.",
+        "OptimalLevel": 8,
+        "Objectives": [
+          {
+            "ObjectiveId": 9846,
+            "TypeId": 14,
+            "TypeName": "DefeatMulti",
+            "Param0": 4105,
+            "Param1": 2,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9847,
+            "TypeId": 14,
+            "TypeName": "DefeatMulti",
+            "Param0": 4106,
+            "Param1": 2,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9848,
+            "TypeId": 14,
+            "TypeName": "DefeatMulti",
+            "Param0": 982,
+            "Param1": 2,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9849,
+            "TypeId": 9,
+            "TypeName": "NpcTalkBack",
+            "Param0": 2880,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153356294,
+            "HandlerImplemented": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1647,
+    "Name": "Leçon d'humilité",
+    "LevelMin": 8,
+    "LevelMax": 8,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "Qf=1646",
+    "Steps": [
+      {
+        "StepId": 2267,
+        "Name": "Leçon d'humilité",
+        "DescriptionText": "Cette Kruella mérite une bonne correction !",
+        "OptimalLevel": 8,
+        "Objectives": [
+          {
+            "ObjectiveId": 9850,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 4097,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153879040,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9851,
+            "TypeId": 9,
+            "TypeName": "NpcTalkBack",
+            "Param0": 2880,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153356294,
+            "HandlerImplemented": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1652,
+    "Name": "Le choix des armes",
+    "LevelMin": 8,
+    "LevelMax": 8,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "Qf=1651",
+    "Steps": [
+      {
+        "StepId": 2272,
+        "Name": "Le choix des armes",
+        "DescriptionText": "Berb vous soumet à une dernière épreuve : fabriquer des armes dignes de ce nom. En prime, vous devez confectionner une clef de la Crypte de Kardorim. Si vous n'avez pas peur de vous aventurer dans un donjon, elle vous sera peut-être utile...",
+        "OptimalLevel": 8,
+        "Objectives": [
+          {
+            "ObjectiveId": 9888,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 1356,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153355266,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9889,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 2587,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153355264,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9890,
+            "TypeId": 17,
+            "TypeName": "CraftItem",
+            "Param0": 8545,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153354248,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9891,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2899,
+            "Param1": 1356,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9892,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2899,
+            "Param1": 2587,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9893,
+            "TypeId": 2,
+            "TypeName": "BringItemToNpc",
+            "Param0": 2899,
+            "Param1": 8545,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9894,
+            "TypeId": 1,
+            "TypeName": "GoToNpc",
+            "Param0": 2899,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153878787,
+            "HandlerImplemented": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 1648,
+    "Name": "Des chafers qui marchent",
+    "LevelMin": 9,
+    "LevelMax": 9,
+    "CategoryId": 19,
+    "Followable": true,
+    "StartCriterion": "Qf=1647",
+    "Steps": [
+      {
+        "StepId": 2268,
+        "Name": "Des chafers qui marchent",
+        "DescriptionText": "Le capitaine vous a chargé de retrouver un sac de bijoux volé par un chafer. Profitez-en pour faire un peu de nettoyage dans le cimetière.",
+        "OptimalLevel": 9,
+        "Objectives": [
+          {
+            "ObjectiveId": 9852,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 4046,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9853,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 4047,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9854,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 4048,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9855,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 4049,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9856,
+            "TypeId": 4,
+            "TypeName": "DiscoverMap",
+            "Param0": 529467,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9859,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 529472,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153356288,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9857,
+            "TypeId": 6,
+            "TypeName": "DefeatMonsterOneFight",
+            "Param0": 4053,
+            "Param1": 1,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 0,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 9858,
+            "TypeId": 3,
+            "TypeName": "GiveItemToNpc",
+            "Param0": 2880,
+            "Param1": 16540,
+            "Param2": 1,
+            "Param3": 0,
+            "MapId": 153356294,
+            "HandlerImplemented": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "QuestId": 2004,
+    "Name": "Destination Astrub",
+    "LevelMin": 10,
+    "LevelMax": 10,
+    "CategoryId": 4,
+    "Followable": true,
+    "StartCriterion": "Qf=1635",
+    "Steps": [
+      {
+        "StepId": 2611,
+        "Name": "Destination Astrub",
+        "DescriptionText": "Lorsque l'île d'Incarnam n'aura plus de secrets pour vous, il sera temps de commencer votre long périple vers la gloire, la fortune et les Dofus. Première étape de ce voyage : Astrub, la cité des mercenaires, l'une des villes les plus populeuses du Monde des Douze.",
+        "OptimalLevel": 10,
+        "Objectives": [
+          {
+            "ObjectiveId": 13767,
+            "TypeId": 1,
+            "TypeName": "GoToNpc",
+            "Param0": 4360,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153880835,
+            "HandlerImplemented": true
+          },
+          {
+            "ObjectiveId": 13931,
+            "TypeId": 0,
+            "TypeName": "None",
+            "Param0": 750167,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 153880835,
+            "HandlerImplemented": false
+          },
+          {
+            "ObjectiveId": 13768,
+            "TypeId": 1,
+            "TypeName": "GoToNpc",
+            "Param0": 4355,
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "MapId": 192416776,
+            "HandlerImplemented": true
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "Id": 442,
+    "AreaId": 45,
+    "Name": "Lac",
+    "Level": 5,
+    "MapCount": 15,
+    "NpcEntries": 9,
+    "QuestEntries": 0,
+    "AssociatedZaapMapId": 0
+  },
+  {
+    "Id": 443,
+    "AreaId": 45,
+    "Name": "Forêt",
+    "Level": 5,
+    "MapCount": 10,
+    "NpcEntries": 6,
+    "QuestEntries": 1,
+    "AssociatedZaapMapId": 0
+  },
+  {
+    "Id": 444,
+    "AreaId": 45,
+    "Name": "Champs",
+    "Level": 5,
+    "MapCount": 15,
+    "NpcEntries": 13,
+    "QuestEntries": 7,
+    "AssociatedZaapMapId": 0
+  },
+  {
+    "Id": 445,
+    "AreaId": 45,
+    "Name": "Pâturages",
+    "Level": 5,
+    "MapCount": 9,
+    "NpcEntries": 4,
+    "QuestEntries": 1,
+    "AssociatedZaapMapId": 0
+  },
+  {
+    "Id": 446,
+    "AreaId": 45,
+    "Name": "Temple Céleste",
+    "Level": 1,
+    "MapCount": 24,
+    "NpcEntries": 21,
+    "QuestEntries": 1,
+    "AssociatedZaapMapId": 0
+  },
+  {
+    "Id": 447,
+    "AreaId": 45,
+    "Name": "Crypte de Kardorim",
+    "Level": 10,
+    "MapCount": 8,
+    "NpcEntries": 1,
+    "QuestEntries": 0,
+    "AssociatedZaapMapId": 153880064
+  },
+  {
+    "Id": 448,
+    "AreaId": 45,
+    "Name": "Taverne",
+    "Level": 1,
+    "MapCount": 2,
+    "NpcEntries": 5,
+    "QuestEntries": 0,
+    "AssociatedZaapMapId": 0
+  },
+  {
+    "Id": 449,
+    "AreaId": 45,
+    "Name": "Cimetière",
+    "Level": 10,
+    "MapCount": 8,
+    "NpcEntries": 1,
+    "QuestEntries": 0,
+    "AssociatedZaapMapId": 0
+  },
+  {
+    "Id": 450,
+    "AreaId": 45,
+    "Name": "Route des âmes",
+    "Level": 1,
+    "MapCount": 9,
+    "NpcEntries": 11,
+    "QuestEntries": 10,
+    "AssociatedZaapMapId": 0
+  },
+  {
+    "Id": 536,
+    "AreaId": 45,
+    "Name": "Tutoriel guidé",
+    "Level": 1,
+    "MapCount": 5,
+    "NpcEntries": 1,
+    "QuestEntries": 0,
+    "AssociatedZaapMapId": 0
+  },
+  {
+    "Id": 778,
+    "AreaId": 45,
+    "Name": "Mine",
+    "Level": 5,
+    "MapCount": 7,
+    "NpcEntries": 0,
+    "QuestEntries": 0,
+    "AssociatedZaapMapId": 0
+  },
+  {
+    "Id": 815,
+    "AreaId": 45,
+    "Name": "Queue du Dragon",
+    "Level": 120,
+    "MapCount": 6,
+    "NpcEntries": 4,
+    "QuestEntries": 0,
+    "AssociatedZaapMapId": 0
+  }
+]

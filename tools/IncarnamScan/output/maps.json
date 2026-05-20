@@ -1,0 +1,1064 @@
+[
+  {
+    "MapId": 153355270,
+    "PosX": -2,
+    "PosY": -2,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010882,
+    "PosX": -2,
+    "PosY": -2,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153355268,
+    "PosX": -1,
+    "PosY": -2,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010370,
+    "PosX": -1,
+    "PosY": -2,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153354244,
+    "PosX": 0,
+    "PosY": -2,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153878786,
+    "PosX": 0,
+    "PosY": -2,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010881,
+    "PosX": -2,
+    "PosY": -1,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010369,
+    "PosX": -1,
+    "PosY": -1,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153354246,
+    "PosX": 0,
+    "PosY": -1,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153878785,
+    "PosX": 0,
+    "PosY": -1,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010624,
+    "PosX": -2,
+    "PosY": 0,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010112,
+    "PosX": -1,
+    "PosY": 0,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153878528,
+    "PosX": 0,
+    "PosY": 0,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010113,
+    "PosX": -1,
+    "PosY": 1,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153878529,
+    "PosX": 0,
+    "PosY": 1,
+    "SubAreaId": 442,
+    "SubAreaName": "Lac",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153354248,
+    "PosX": 1,
+    "PosY": -2,
+    "SubAreaId": 443,
+    "SubAreaName": "Forêt",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153879298,
+    "PosX": 1,
+    "PosY": -2,
+    "SubAreaId": 443,
+    "SubAreaName": "Forêt",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153355266,
+    "PosX": 2,
+    "PosY": -2,
+    "SubAreaId": 443,
+    "SubAreaName": "Forêt",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153879810,
+    "PosX": 2,
+    "PosY": -2,
+    "SubAreaId": 443,
+    "SubAreaName": "Forêt",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153880322,
+    "PosX": 3,
+    "PosY": -2,
+    "SubAreaId": 443,
+    "SubAreaName": "Forêt",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153879297,
+    "PosX": 1,
+    "PosY": -1,
+    "SubAreaId": 443,
+    "SubAreaName": "Forêt",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153879809,
+    "PosX": 2,
+    "PosY": -1,
+    "SubAreaId": 443,
+    "SubAreaName": "Forêt",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153880321,
+    "PosX": 3,
+    "PosY": -1,
+    "SubAreaId": 443,
+    "SubAreaName": "Forêt",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153879040,
+    "PosX": 1,
+    "PosY": 0,
+    "SubAreaId": 443,
+    "SubAreaName": "Forêt",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153879552,
+    "PosX": 2,
+    "PosY": 0,
+    "SubAreaId": 443,
+    "SubAreaName": "Forêt",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154011398,
+    "PosX": -3,
+    "PosY": -6,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010886,
+    "PosX": -2,
+    "PosY": -6,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010374,
+    "PosX": -1,
+    "PosY": -6,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154011397,
+    "PosX": -3,
+    "PosY": -5,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010885,
+    "PosX": -2,
+    "PosY": -5,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010373,
+    "PosX": -1,
+    "PosY": -5,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153878789,
+    "PosX": 0,
+    "PosY": -5,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010884,
+    "PosX": -2,
+    "PosY": -4,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153354242,
+    "PosX": -1,
+    "PosY": -4,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010372,
+    "PosX": -1,
+    "PosY": -4,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 81527303,
+    "PosX": 0,
+    "PosY": -4,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153356290,
+    "PosX": 0,
+    "PosY": -4,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153356292,
+    "PosX": 0,
+    "PosY": -4,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153356294,
+    "PosX": 0,
+    "PosY": -4,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153878788,
+    "PosX": 0,
+    "PosY": -4,
+    "SubAreaId": 444,
+    "SubAreaName": "Champs",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153879301,
+    "PosX": 1,
+    "PosY": -5,
+    "SubAreaId": 445,
+    "SubAreaName": "Pâturages",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153879813,
+    "PosX": 2,
+    "PosY": -5,
+    "SubAreaId": 445,
+    "SubAreaName": "Pâturages",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153880325,
+    "PosX": 3,
+    "PosY": -5,
+    "SubAreaId": 445,
+    "SubAreaName": "Pâturages",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153355272,
+    "PosX": 1,
+    "PosY": -4,
+    "SubAreaId": 445,
+    "SubAreaName": "Pâturages",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153879300,
+    "PosX": 1,
+    "PosY": -4,
+    "SubAreaId": 445,
+    "SubAreaName": "Pâturages",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153355264,
+    "PosX": 2,
+    "PosY": -4,
+    "SubAreaId": 445,
+    "SubAreaName": "Pâturages",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153879812,
+    "PosX": 2,
+    "PosY": -4,
+    "SubAreaId": 445,
+    "SubAreaName": "Pâturages",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153880324,
+    "PosX": 3,
+    "PosY": -4,
+    "SubAreaId": 445,
+    "SubAreaName": "Pâturages",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153880836,
+    "PosX": 4,
+    "PosY": -4,
+    "SubAreaId": 445,
+    "SubAreaName": "Pâturages",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152043777,
+    "PosX": -4,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152043521,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152043523,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152043525,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152043527,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152043529,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152044545,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152044547,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152044549,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152044551,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152044553,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152045569,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152045571,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152045573,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152045575,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152045577,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152046593,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152046595,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152046597,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152046599,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153092096,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153092354,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153092356,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153093380,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 446,
+    "SubAreaName": "Temple Céleste",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152836096,
+    "PosX": 4,
+    "PosY": -1,
+    "SubAreaId": 447,
+    "SubAreaName": "Crypte de Kardorim",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152829952,
+    "PosX": 5,
+    "PosY": -1,
+    "SubAreaId": 447,
+    "SubAreaName": "Crypte de Kardorim",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152830976,
+    "PosX": 5,
+    "PosY": -1,
+    "SubAreaId": 447,
+    "SubAreaName": "Crypte de Kardorim",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152832000,
+    "PosX": 5,
+    "PosY": -1,
+    "SubAreaId": 447,
+    "SubAreaName": "Crypte de Kardorim",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152833024,
+    "PosX": 5,
+    "PosY": -1,
+    "SubAreaId": 447,
+    "SubAreaName": "Crypte de Kardorim",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152834048,
+    "PosX": 5,
+    "PosY": -1,
+    "SubAreaId": 447,
+    "SubAreaName": "Crypte de Kardorim",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152835072,
+    "PosX": 5,
+    "PosY": -1,
+    "SubAreaId": 447,
+    "SubAreaName": "Crypte de Kardorim",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 205787146,
+    "PosX": 5,
+    "PosY": -1,
+    "SubAreaId": 447,
+    "SubAreaName": "Crypte de Kardorim",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153357316,
+    "PosX": 0,
+    "PosY": -3,
+    "SubAreaId": 448,
+    "SubAreaName": "Taverne",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153358340,
+    "PosX": 0,
+    "PosY": -3,
+    "SubAreaId": 448,
+    "SubAreaName": "Taverne",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153881088,
+    "PosX": 4,
+    "PosY": -1,
+    "SubAreaId": 449,
+    "SubAreaName": "Cimetière",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153881600,
+    "PosX": 5,
+    "PosY": -1,
+    "SubAreaId": 449,
+    "SubAreaName": "Cimetière",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153880064,
+    "PosX": 3,
+    "PosY": 0,
+    "SubAreaId": 449,
+    "SubAreaName": "Cimetière",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153356288,
+    "PosX": 4,
+    "PosY": 0,
+    "SubAreaId": 449,
+    "SubAreaName": "Cimetière",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153881089,
+    "PosX": 4,
+    "PosY": 0,
+    "SubAreaId": 449,
+    "SubAreaName": "Cimetière",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153881601,
+    "PosX": 5,
+    "PosY": 0,
+    "SubAreaId": 449,
+    "SubAreaName": "Cimetière",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153880578,
+    "PosX": 3,
+    "PosY": 1,
+    "SubAreaId": 449,
+    "SubAreaName": "Cimetière",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153881090,
+    "PosX": 4,
+    "PosY": 1,
+    "SubAreaId": 449,
+    "SubAreaName": "Cimetière",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010883,
+    "PosX": -2,
+    "PosY": -3,
+    "SubAreaId": 450,
+    "SubAreaName": "Route des âmes",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 154010371,
+    "PosX": -1,
+    "PosY": -3,
+    "SubAreaId": 450,
+    "SubAreaName": "Route des âmes",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153878787,
+    "PosX": 0,
+    "PosY": -3,
+    "SubAreaId": 450,
+    "SubAreaName": "Route des âmes",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153879299,
+    "PosX": 1,
+    "PosY": -3,
+    "SubAreaId": 450,
+    "SubAreaName": "Route des âmes",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153356296,
+    "PosX": 2,
+    "PosY": -3,
+    "SubAreaId": 450,
+    "SubAreaName": "Route des âmes",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153879811,
+    "PosX": 2,
+    "PosY": -3,
+    "SubAreaId": 450,
+    "SubAreaName": "Route des âmes",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153354240,
+    "PosX": 3,
+    "PosY": -3,
+    "SubAreaId": 450,
+    "SubAreaName": "Route des âmes",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153880323,
+    "PosX": 3,
+    "PosY": -3,
+    "SubAreaId": 450,
+    "SubAreaName": "Route des âmes",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153880835,
+    "PosX": 4,
+    "PosY": -3,
+    "SubAreaId": 450,
+    "SubAreaName": "Route des âmes",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152305664,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 536,
+    "SubAreaName": "Tutoriel guidé",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152306688,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 536,
+    "SubAreaName": "Tutoriel guidé",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152306690,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 536,
+    "SubAreaName": "Tutoriel guidé",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152307712,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 536,
+    "SubAreaName": "Tutoriel guidé",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 152307714,
+    "PosX": -3,
+    "PosY": -3,
+    "SubAreaId": 536,
+    "SubAreaName": "Tutoriel guidé",
+    "Outdoor": true,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153357312,
+    "PosX": 1,
+    "PosY": -5,
+    "SubAreaId": 778,
+    "SubAreaName": "Mine",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153358336,
+    "PosX": 2,
+    "PosY": -5,
+    "SubAreaId": 778,
+    "SubAreaName": "Mine",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153357318,
+    "PosX": 3,
+    "PosY": -5,
+    "SubAreaId": 778,
+    "SubAreaName": "Mine",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153357314,
+    "PosX": 1,
+    "PosY": -4,
+    "SubAreaId": 778,
+    "SubAreaName": "Mine",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153358338,
+    "PosX": 2,
+    "PosY": -4,
+    "SubAreaId": 778,
+    "SubAreaName": "Mine",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153358344,
+    "PosX": 3,
+    "PosY": -4,
+    "SubAreaId": 778,
+    "SubAreaName": "Mine",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 153358342,
+    "PosX": 4,
+    "PosY": -4,
+    "SubAreaId": 778,
+    "SubAreaName": "Mine",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 122683905,
+    "PosX": 2,
+    "PosY": 3,
+    "SubAreaId": 815,
+    "SubAreaName": "Queue du Dragon",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 122684929,
+    "PosX": 2,
+    "PosY": 3,
+    "SubAreaId": 815,
+    "SubAreaName": "Queue du Dragon",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 122685953,
+    "PosX": 2,
+    "PosY": 3,
+    "SubAreaId": 815,
+    "SubAreaName": "Queue du Dragon",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 122685955,
+    "PosX": 2,
+    "PosY": 3,
+    "SubAreaId": 815,
+    "SubAreaName": "Queue du Dragon",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 122686977,
+    "PosX": 2,
+    "PosY": 3,
+    "SubAreaId": 815,
+    "SubAreaName": "Queue du Dragon",
+    "Outdoor": false,
+    "IsTransition": false
+  },
+  {
+    "MapId": 175374336,
+    "PosX": 2,
+    "PosY": 3,
+    "SubAreaId": 815,
+    "SubAreaName": "Queue du Dragon",
+    "Outdoor": false,
+    "IsTransition": false
+  }
+]
