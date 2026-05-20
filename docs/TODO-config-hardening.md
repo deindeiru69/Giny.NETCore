@@ -17,13 +17,14 @@ public const string ClientPath = "C:\\Users\\olivi\\Desktop\\Giny .NET Core\\Dof
 `ExternalResources.Initialize()` now reads
 `ConfigManager<WorldViewConfig>.Instance.ClientPath`).
 
-**Remaining 10 references — 7 files across 3 sub-projects** :
+`Giny.DatabaseSynchronizer` no longer uses it either (commit `07509ae5` —
+SyncConfig + config.Production.json overlay, same pattern as Auth/World).
+This eliminated 5 of the previously listed 10 references.
+
+**Remaining 5 references — 4 files across 2 sub-projects** :
 
 | Project | File | Lines |
 |---|---|---|
-| `Sync/Giny.DatabaseSynchronizer` | `Program.cs` | 52 |
-| `Sync/Giny.DatabaseSynchronizer` | `MapSynchronizer.cs` | 156, 159 |
-| `Sync/Giny.DatabaseSynchronizer` | `D2OSynchronizer.cs` | 40 |
 | `Sync/Giny.CustomEnumsBuilder` | `Program.cs` | 27 |
 | `Tools/Giny.MapEditor` | `Textures/TextureManager.cs` | 46 |
 | `Tools/Giny.MapEditor` | `Textures/TextureMapper.cs` | 59, 62 |
@@ -31,9 +32,11 @@ public const string ClientPath = "C:\\Users\\olivi\\Desktop\\Giny .NET Core\\Dof
 
 ### Suggested approach per tool
 
-- **DatabaseSynchronizer** / **CustomEnumsBuilder** : Console codegen, run rarely
-  by a dev. Easiest is a CLI flag (`--client-path`) with optional fallback to an
-  env var (e.g. `GINY_CLIENT_PATH`). No persistent config file needed.
+- **CustomEnumsBuilder** : Console codegen, run rarely by a dev. Easiest is a
+  CLI flag (`--client-path`) with optional fallback to an env var (e.g.
+  `GINY_CLIENT_PATH`). No persistent config file needed. Could also adopt the
+  same `IConfigFile` + `ConfigManager` pattern now used by the Synchronizer
+  if more knobs are needed later.
 - **MapEditor** : WPF desktop, no Configuration UI today. Two options:
   - Quick win — read same `WorldViewConfig` (`config.json`) as WorldEditor so a
     user who configured one tool is set for both. Requires
@@ -42,6 +45,7 @@ public const string ClientPath = "C:\\Users\\olivi\\Desktop\\Giny .NET Core\\Dof
   - Proper — its own `MapEditorConfig : IConfigFile` mirroring the WorldEditor
     pattern, with a Configuration dialog at startup.
 
-Once all 10 usages are migrated, `ClientConstants.ClientPath` can be deleted
-from `Sources/Giny.IO/ClientConstants.cs` (and the line marked `/// Debug only`
-removed). Validate with a final `grep -r 'ClientConstants.ClientPath'`.
+Once all 5 remaining usages are migrated, `ClientConstants.ClientPath` can be
+deleted from `Sources/Giny.IO/ClientConstants.cs` (and the line marked
+`/// Debug only` removed). Validate with a final
+`grep -r 'ClientConstants.ClientPath'`.
