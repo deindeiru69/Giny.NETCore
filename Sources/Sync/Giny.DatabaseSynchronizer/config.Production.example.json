@@ -1,0 +1,10 @@
+{
+  "SQLHost": "127.0.0.1",
+  "SQLPort": 3306,
+  "SQLUser": "deindeiru",
+  "SQLPassword": "CHANGER_AVANT_DEPLOIEMENT",
+  "SQLDBName": "deindeiruworld",
+  "ClientPath": "/opt/deindeiru/client-data",
+  "SyncD2O": true,
+  "SyncMaps": false
+}

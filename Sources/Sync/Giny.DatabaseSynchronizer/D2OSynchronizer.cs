@@ -1,4 +1,5 @@
 ﻿using Giny.Core;
+using Giny.Core.IO.Configuration;
 using Giny.Core.Logging;
 using Giny.IO;
 using Giny.IO.D2I;
@@ -37,7 +38,8 @@ namespace Giny.DatabaseSynchronizer
 
         public static void Synchronize()
         {
-            string d2oDirectory = Path.Combine(ClientConstants.ClientPath, ClientConstants.D2oDirectory);
+            var config = ConfigManager<SyncConfig>.Instance;
+            string d2oDirectory = Path.Combine(config.ClientPath, ClientConstants.D2oDirectory);
 
             foreach (var file in Directory.GetFiles(d2oDirectory))
             {
@@ -45,7 +47,7 @@ namespace Giny.DatabaseSynchronizer
                     d2oReaders.Add(new D2OReader(file));
             }
 
-            if (!Program.SYNC_D2O)
+            if (!config.SyncD2O)
             {
                 return;
             }

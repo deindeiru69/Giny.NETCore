@@ -8,6 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="config.Production.example.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Template de la config de production (overlay appliqué quand
+         DOTNET_ENVIRONMENT=Production). À copier en config.Production.json
+         sur la VM puis renseigner SQLPassword. Jamais versionné. -->
+    <Content Include="config.Production.example.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Giny.IO\Giny.IO.csproj" />
     <ProjectReference Include="..\..\Giny.ORM\Giny.ORM.csproj" />
     <ProjectReference Include="..\..\Servers\Giny.World\Giny.World.csproj" />

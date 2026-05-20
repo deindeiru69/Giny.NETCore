@@ -1,6 +1,7 @@
 ﻿using Giny.IO.DLM;
 using Giny.IO.DLM.Elements;
 using Giny.Core;
+using Giny.Core.IO.Configuration;
 using Giny.IO.D2P;
 using Giny.IO.DLM;
 using Giny.IO.ELE;
@@ -141,8 +142,9 @@ namespace Giny.DatabaseSynchronizer
 
         public static void Synchronize()
         {
+            var config = ConfigManager<SyncConfig>.Instance;
 
-            if (!Program.SYNC_MAPS)
+            if (!config.SyncMaps)
             {
                 return;
             }
@@ -153,10 +155,10 @@ namespace Giny.DatabaseSynchronizer
             Logger.Write("Building Maps...", Channels.Info);
 
 
-            var elementPath = Path.Combine(ClientConstants.ClientPath, ClientConstants.ElementsPath);
+            var elementPath = Path.Combine(config.ClientPath, ClientConstants.ElementsPath);
             Elements = EleReader.ReadElements(elementPath);
 
-            var mapsPath = Path.Combine(ClientConstants.ClientPath, ClientConstants.Maps0Path);
+            var mapsPath = Path.Combine(config.ClientPath, ClientConstants.Maps0Path);
             LoadD2PFile(mapsPath);
         }
 
