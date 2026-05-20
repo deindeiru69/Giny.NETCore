@@ -2,6 +2,7 @@
 using Giny.Zaap.Accounts;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,11 +42,16 @@ namespace Giny.Uplauncher
             set;
         }
 
+        // Default cohérent avec le layout de l'installeur Inno Setup
+        // (DeindeiruInstaller.iss l.43) : {app}\Giny.Uplauncher.exe à la racine
+        // et {app}\client\ pour le client Dofus. L'installeur écrit ce path
+        // explicitement dans config.json à l'install ; ce default sert quand
+        // config.json est absent (dev local, install corrompu, run manuel).
         public string ClientPath
         {
             get;
             set;
-        } = @"C:\Users\olivi\Desktop\Giny .NET Core\Dofus";
+        } = Path.Combine(AppContext.BaseDirectory, "client");
 
 
         // Hôte par défaut : serveur cloud Deindeiru-Prod (VM Hetzner +

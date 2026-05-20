@@ -161,6 +161,13 @@
                     ProgressIndeterminate = true;
                     break;
 
+                case UpdateStatusEnum.Downloading:
+                    var progress = (UpdateProgress)token;
+                    StateText = $"Téléchargement {progress.Current}/{progress.Total} : {progress.CurrentFilePath}";
+                    ProgressIndeterminate = false;
+                    ProgressValue = (int)((double)progress.Current / progress.Total * 100);
+                    break;
+
                 case UpdateStatusEnum.Ready:
                     StateText = $"Version : {Config.LocalVersion}";
                     ProgressIndeterminate = false;
