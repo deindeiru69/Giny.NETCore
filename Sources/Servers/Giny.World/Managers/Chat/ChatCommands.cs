@@ -630,15 +630,19 @@ namespace Giny.World.Managers.Chat
 
         // Commande one-shot pour injecter le texte du dialogue Ganymède dans
         // le D2I serveur (puis distribution clients via launcher). À lancer
-        // une seule fois en admin après le déploiement. MessageId 9999999
-        // choisi hors plage Ankama pour éviter toute collision.
+        // une seule fois en admin après le déploiement. MessageId 1100000
+        // choisi juste au-dessus du max Ankama (1 018 090) : assez haut pour
+        // ne pas entrer en collision avec une plage utilisée, assez bas pour
+        // que le client AS3 ne le filtre pas (testé : 9999999 est silencieux-
+        // ment ignoré côté client malgré une écriture D2I correcte).
+        // Convention Giny : custom messageIds dans la plage 1100000-1999999.
         // D2IManager est paresseusement initialisé ici : le runtime World
         // n'a normalement pas besoin de charger les D2I (88 MB) puisque le
         // client lit ses propres fichiers — on évite donc l'init au boot.
         [ChatCommand("patchganymededialog", ServerRoleEnum.Administrator)]
         public static void PatchGanymedeDialogCommand(WorldClient client)
         {
-            const int messageId = 9999999;
+            const int messageId = 1100000;
             const string text = "HIHIHIHIHIHIHIH, bonjour botère.";
 
             var clientPath = ConfigManager<WorldConfig>.Instance.ClientPath;
