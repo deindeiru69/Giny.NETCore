@@ -153,6 +153,19 @@ namespace Giny.World
             set;
         } = "Bienvenue sur le <b>serveur de test</b>. Nous sommes heureux de vous revoir.";
 
+        /// <summary>
+        /// Path racine du client Dofus déployé sur la VM (doit contenir
+        /// data/i18n/ et data/common/). Sert aux commandes admin / scripts
+        /// qui ont besoin de lire ou patcher les fichiers client côté
+        /// serveur (ex. .patchganymededialog). Le runtime gameplay n'en a
+        /// pas besoin — le client lit ses propres fichiers locaux.
+        /// </summary>
+        public string ClientPath
+        {
+            get;
+            set;
+        } = "/opt/deindeiru/client-data";
+
         public double JobRate
         {
             get;

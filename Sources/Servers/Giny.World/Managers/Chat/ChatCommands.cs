@@ -1,6 +1,7 @@
 ﻿using Giny.Core.Extensions;
 using Giny.Core.IO.Configuration;
 using Giny.Core.Time;
+using Giny.IO;
 using Giny.IO.D2I;
 using Giny.ORM;
 using Giny.Protocol.Custom.Enums;
@@ -40,6 +41,7 @@ using Giny.World.Records.Tinsel;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -630,12 +632,17 @@ namespace Giny.World.Managers.Chat
         // le D2I serveur (puis distribution clients via launcher). À lancer
         // une seule fois en admin après le déploiement. MessageId 9999999
         // choisi hors plage Ankama pour éviter toute collision.
+        // D2IManager est paresseusement initialisé ici : le runtime World
+        // n'a normalement pas besoin de charger les D2I (88 MB) puisque le
+        // client lit ses propres fichiers — on évite donc l'init au boot.
         [ChatCommand("patchganymededialog", ServerRoleEnum.Administrator)]
         public static void PatchGanymedeDialogCommand(WorldClient client)
         {
             const int messageId = 9999999;
             const string text = "HIHIHIHIHIHIHIH, bonjour botère.";
 
+            var clientPath = ConfigManager<WorldConfig>.Instance.ClientPath;
+            D2IManager.Initialize(Path.Combine(clientPath, ClientConstants.i18nPath));
             D2IManager.SetText(messageId, text);
             D2IManager.SaveAll();
 

@@ -6,5 +6,6 @@
   "SQLPort": 3306,
   "SQLUser": "deindeiru",
   "SQLPassword": "CHANGER_AVANT_DEPLOIEMENT",
-  "SQLDBName": "deindeiruworld"
+  "SQLDBName": "deindeiruworld",
+  "ClientPath": "/opt/deindeiru/client-data"
 }
