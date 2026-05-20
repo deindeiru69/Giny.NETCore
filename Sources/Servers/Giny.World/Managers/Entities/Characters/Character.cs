@@ -1328,6 +1328,29 @@ namespace Giny.World.Managers.Entities.Characters
             {
                 Party.UpdateMember(this);
             }
+
+            // Onboarding Ganymède — au premier OnEnterMap sur la map de spawn
+            // d'Incarnam (154010883), ouvre auto le dialogue avec le PNJ
+            // Ganymède (TemplateId 4823). Le flag passe à true UNIQUEMENT
+            // après que TalkToNpc a été appelé : si Ganymède n'est pas
+            // spawné (run dev sans seed du PNJ), le scénario re-tente au
+            // prochain OnEnterMap au lieu de griller le drapeau.
+            if (!Record.HasCompletedFirstLogin && this.Map.Id == 154010883L)
+            {
+                var ganymede = this.Map.Instance.GetEntities<Npc>()
+                    .FirstOrDefault(n => n.SpawnRecord.TemplateId == 4823);
+                if (ganymede != null)
+                {
+                    var talkAction = ganymede.SpawnRecord.Actions
+                        .FirstOrDefault(a => a.Action == NpcActionsEnum.TALK);
+                    if (talkAction != null)
+                    {
+                        TalkToNpc(ganymede, talkAction);
+                        Record.HasCompletedFirstLogin = true;
+                        Record.UpdateLater();
+                    }
+                }
+            }
         }
 
         public bool IsDead()

@@ -209,6 +209,19 @@ namespace Giny.World.Records.Characters
             set;
         }
 
+        // Onboarding scripté Ganymède (1er login). Persistance volontairement
+        // simple : un bool, mis à true uniquement après que le dialogue
+        // d'accueil a effectivement été déclenché — voir Character.OnEnterMap.
+        // TINYINT(1) explicite car le ConvertType ORM n'a pas d'entrée Boolean
+        // (tombe sur MEDIUMTEXT par défaut sinon).
+        [TypeOverride("TINYINT(1)")]
+        [Update]
+        public bool HasCompletedFirstLogin
+        {
+            get;
+            set;
+        } = false;
+
         [Ignore]
         public int? FightId
         {
@@ -308,6 +321,7 @@ namespace Giny.World.Records.Characters
                 HardcoreInformations = new HardcoreInformations(),
                 ContextualLook = null,
                 Quests = new List<CharacterQuestRecord>(),
+                HasCompletedFirstLogin = false,
             };
         }
         public static CharacterRecord GetCharacterRecord(long id)

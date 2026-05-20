@@ -1,6 +1,7 @@
 ﻿using Giny.Core.Extensions;
 using Giny.Core.IO.Configuration;
 using Giny.Core.Time;
+using Giny.IO.D2I;
 using Giny.ORM;
 using Giny.Protocol.Custom.Enums;
 using Giny.Protocol.Enums;
@@ -623,6 +624,22 @@ namespace Giny.World.Managers.Chat
             {
                 character.LearnSpell((short)monsterSpellId, true);
             }
+        }
+
+        // Commande one-shot pour injecter le texte du dialogue Ganymède dans
+        // le D2I serveur (puis distribution clients via launcher). À lancer
+        // une seule fois en admin après le déploiement. MessageId 9999999
+        // choisi hors plage Ankama pour éviter toute collision.
+        [ChatCommand("patchganymededialog", ServerRoleEnum.Administrator)]
+        public static void PatchGanymedeDialogCommand(WorldClient client)
+        {
+            const int messageId = 9999999;
+            const string text = "HIHIHIHIHIHIHIH, bonjour botère.";
+
+            D2IManager.SetText(messageId, text);
+            D2IManager.SaveAll();
+
+            client.Character.Reply($"D2I patché : messageId {messageId} ajouté.");
         }
     }
 }
