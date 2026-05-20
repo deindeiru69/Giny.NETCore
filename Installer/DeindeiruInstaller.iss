@@ -72,7 +72,7 @@ begin
         '  "LocalVersion": "1.0.0",' + #13#10 +
         '  "StartAllInstances": false,' + #13#10 +
         '  "ClientPath": "' + ClientDir + '",' + #13#10 +
-        '  "Hosts": [ { "Ip": "deindeiruworld.duckdns.org", "Port": 5555, "ApiPort": 9001, "ApiBaseUrl": "https://deindeiruworld.duckdns.org" } ],' + #13#10 +
+        '  "Hosts": [ { "Ip": "deindeiruworld.duckdns.org", "Port": 5555, "ApiPort": 443, "ApiBaseUrl": "https://deindeiruworld.duckdns.org" } ],' + #13#10 +
         '  "HostIndex": 0' + #13#10 +
         '}';
       SaveStringToFile(ConfigFile, Json, False);
