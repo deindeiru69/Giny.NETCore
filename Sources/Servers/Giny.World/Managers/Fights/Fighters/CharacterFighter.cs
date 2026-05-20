@@ -523,14 +523,27 @@ namespace Giny.World.Managers.Fights.Fighters
             Character.Client.Send(msg);
         }
 
+        // Hero Mode — source de vérité unique pour spells + shortcuts envoyés
+        // dans le SlaveSwitchContextMessage. Filtre par MinimumLevel via
+        // CharacterSpell.Learned(), car le client ne re-gate pas la slaveSpells
+        // (contrairement à la barre solo, gatée côté UI via les D2O client).
+        private CharacterSpell[] GetLearnedHeroSpells()
+        {
+            return Character.Record.Spells
+                .Where(x => x.Learned(Character))
+                .ToArray();
+        }
+
         private SpellItem[] GetHeroSpellItems()
         {
-            return GetSpells().Select(x => new SpellItem(x.Id, GetSpell(x.Id).Level.Grade)).ToArray();
+            return GetLearnedHeroSpells()
+                .Select(x => x.GetSpellItem(Character))
+                .ToArray();
         }
 
         private Shortcut[] GetHeroShortcuts()
         {
-            SpellRecord[] spells = GetSpells().ToArray();
+            CharacterSpell[] spells = GetLearnedHeroSpells();
             Shortcut[] results = new Shortcut[spells.Length];
 
             for (byte i = 0; i < spells.Length; i++)
@@ -538,7 +551,7 @@ namespace Giny.World.Managers.Fights.Fighters
                 results[i] = new ShortcutSpell()
                 {
                     slot = i,
-                    spellId = spells[i].Id,
+                    spellId = spells[i].ActiveSpellRecord.Id,
                 };
             }
 
