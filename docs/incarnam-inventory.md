@@ -11,7 +11,7 @@ Inventaire automatisé via `tools/IncarnamScan/` (lecture D2O + D2I client Dofus
 - **57 NPCs** référencés par les SubAreas (quest-givers et NPCs de scénario)
 - **20 quêtes** ancrées à Incarnam, soit ~100 objectives au total
 - **Handlers serveur** (post-commit `e1e8f581`) : 7 sur 9 types implémentés. Coverage **65/80 = 81%** des objectives runtime-trackables. Seul gap restant : `CraftItem` (15 occurrences).
-- **Positions natives NPCs** : **NON extractibles** depuis les ressources clients (Maps.d2p / .dlm). Cf. section "Sources investiguées" plus bas. Les positions doivent être placées manuellement via `.addnpc` admin ou par un dump SQL externe si on en trouve un.
+- **Positions natives NPCs** : **48/57 récupérées via Doflex** (`tools/wiki_npc_scraper.py`). Dump : `tools/IncarnamScan/output/npc-positions-wiki.json`. Cf. section 7bis. Les 9 restants (1 téléporteur skippé + 8 introuvables/hors-Incarnam) restent en fallback spawn map `154010883`.
 
 ---
 
@@ -226,14 +226,102 @@ Hypothèse testée : "les .dlm contiennent une référence aux NPCs natifs Ankam
 
 ### Conclusion stratégique
 
-Les positions doivent être obtenues par **observation directe** sur le client Dofus officiel (impossible désormais) OU par **placement manuel** sur Giny via :
-- `.addnpc <templateId>` chat command (cellule = celle du character au moment de l'appel)
-- WorldEditor (édition de `NpcSpawnRecord` via UI, avec cellId/direction manuels)
-- INSERT SQL direct dans `npc_spawns`
-
-Pour les 57 NPCs Incarnam connus (cf. `npcs.json`), un peuplement complet nécessitera ~57 × placement manuel. **Coût d'une session** : 1-2h pour placer 57 NPCs si on a les bons references visuelles (screenshots wiki, captures pré-fermeture, etc.).
+Les positions ne sont pas dans le client. Mais elles sont disponibles publiquement sur **Doflex** (encyclopédie communautaire Dofus). Cf. section 7bis pour le scraper et la couverture obtenue.
 
 Le mini-probe `--dump-dlm <mapId>` est gardé dans `tools/IncarnamScan/DlmProbe.cs` pour de futures investigations structurelles d'autres maps si besoin.
+
+---
+
+## 7bis. Positions NPCs reconstruites via Doflex
+
+Script : `tools/wiki_npc_scraper.py` (Python 3, deps : `requests`).
+Output : `tools/IncarnamScan/output/npc-positions-wiki.json` (57 entrées, schéma fixé).
+
+### Stratégie
+
+1. Crawl complet de l'index Doflex (`https://doflex.fr/fr/encyclopedia/npcs?page=N`, ~115 pages × 50 NPCs = ~5700 NPCs au total) → index local `{nom_normalisé : [(id_doflex, url)]}`.
+2. Pour chaque NPC d'`npcs.json` (57 templates) : lookup nom normalisé (sans accents, lowercase) → fetch page détail Doflex → parse premier `card-a-name` de la section "Positions" pour récupérer `SubAreaLabel [X, Y]` + parent label.
+3. Résolution `(X, Y) → MapId` via `maps.json` : préférence aux maps dont `SubAreaName` matche la SubArea Doflex (substring case-insensitive), puis fallback Outdoor=true.
+4. Fallback explicite (`source = "fallback-spawn-map"`, MapId = 154010883) si : NPC introuvable sur Doflex, page sans Positions, ou coords hors-Incarnam.
+5. Hard skip pour le NPC 4398 ("Portail vers Astrub", téléporteur objet) → `source = "skipped-teleporter"`.
+
+Garde-fous :
+- **Pas d'invention** : chaque coord vient d'une page tierce, et le mapping doit hit une vraie map Incarnam.
+- Rate limit 500ms entre requêtes, 3 retries.
+- Fallback secondaire `wiki-dofus.eu` codé mais non-utilisé (SSL cert mismatch du domaine — 0 hit lors du run).
+
+### Couverture obtenue (run 2026-05-20)
+
+| Source | Count | % |
+|---|---|---|
+| **doflex** | **48** | **84.2%** |
+| `wiki-dofus-eu` | 0 | 0% (SSL cert mismatch, retries échouent) |
+| `skipped-teleporter` | 1 | 1.8% (NPC 4398) |
+| `fallback-spawn-map` | 8 | 14.0% |
+| **Total** | **57** | **100%** |
+
+### Breakdown Doflex par SubArea Incarnam (48 NPCs résolus)
+
+| SubArea Doflex | NPCs |
+|---|---|
+| Champs | 12 |
+| Route des âmes | 9 |
+| Lac | 9 |
+| Taverne | 5 |
+| Forêt | 5 |
+| Pâturages | 4 |
+| Queue du Dragon | 2 |
+| Cimetière | 1 |
+| Temple Céleste | 1 |
+
+### Fallbacks détaillés (8 NPCs)
+
+| TemplateId | Name | Statut |
+|---|---|---|
+| 2207 | Orbalantyr | Pas de match Doflex |
+| 2895 | Maître Hoboulo | Pas de match Doflex |
+| 2896 | Maître Darm | Pas de match Doflex |
+| 2904 | Oskar Khas | Pas de match Doflex |
+| 2936 | Kardorim | Match Doflex (id=2248) mais sa fiche n'a pas de Positions listées |
+| 3687 | Orbalantyr de Mériana | Match Doflex (id=2944) mais position [-6,-3] dans "Marécages nauséabonds" (hors Incarnam) → fallback |
+| 5336 | Goultard | Match Doflex (id=638) mais position [-6,-12] dans "Arènes de Goultard" (hors Incarnam) → fallback |
+| 7102 | Andrée Inkarnay | Pas de match Doflex |
+
+→ Ces 8 NPCs devront être placés manuellement (`.addnpc` + override DB) si on veut un peuplement 100%. Pour Goultard et Orbalantyr de Mériana, leur apparition à Incarnam est probablement spécifique à un script de quête (le NPC a une position canonique ailleurs).
+
+### Format de sortie
+
+```json
+[
+  {
+    "templateId": 2205,
+    "name": "Mériana",
+    "mapId": 154010883,
+    "cellId": 280,
+    "direction": 2,
+    "source": "doflex",
+    "url": "https://doflex.fr/fr/encyclopedia/npcs/...",
+    "coords": "0,-3",
+    "subArea": "Taverne"
+  }
+]
+```
+
+- `cellId` et `direction` restent en valeurs par défaut (280 / 2) — Doflex ne les expose pas. À ajuster manuellement post-import si besoin via WorldEditor.
+- `mapId` = soit la map Outdoor matchant `(X, Y)` + `subArea`, soit `154010883` (spawn) en fallback.
+
+### Comment relancer le scraper
+
+```bash
+cd tools/
+python wiki_npc_scraper.py
+```
+
+Durée : ~2 min (115 pages d'index + 57 fetches détail + retries). Le JSON output est régénéré ; diff via `git diff IncarnamScan/output/npc-positions-wiki.json` pour comparer.
+
+### Prochaine étape
+
+INSERT les 48 spawns Doflex en DB via un patcher idempotent dans `Sources/Modules/Giny.DatabasePatcher/` (cf. section 10), keyed par `(templateId, mapId)` pour ne pas dupliquer en cas de re-run.
 
 ---
 
