@@ -20,13 +20,6 @@ namespace Giny.Uplauncher
             set;
         } = 3001;
 
-
-        public static bool UpToDate
-        {
-            get;
-            set;
-        }
-
         public static MudTheme GinyTheme = new MudTheme()
         {
             Palette = new PaletteDark()

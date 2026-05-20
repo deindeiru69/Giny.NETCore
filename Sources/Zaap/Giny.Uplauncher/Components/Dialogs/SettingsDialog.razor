@@ -99,8 +99,6 @@
         configuration.Set("connection.host", Config.GetSelectedHost().GetClientUri());
         configuration.Save();
 
-        AppState.UpToDate = false;
-
         if (HomeView != null)
         {
             HomeView.Reload();

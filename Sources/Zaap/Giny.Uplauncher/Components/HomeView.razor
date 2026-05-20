@@ -119,20 +119,18 @@
 
     private void Update()
     {
-        if (!AppState.UpToDate)
-        {
-            ClientUpdater = new();
-            ClientUpdater.OnStatusUpdate += OnStatusUpdate;
+        // Toujours invoquer ClientUpdater : son propre quick-skip
+        // (manifest.Version == Config.LocalVersion) gère idempotence et
+        // détecte les patches serveur entre deux mounts de HomeView. Le
+        // cache static AppState.UpToDate précédent était redondant et
+        // causait le sync à être sauté quand un état pré-existant traînait.
+        ClientUpdater = new();
+        ClientUpdater.OnStatusUpdate += OnStatusUpdate;
 
-            Task.Run(() =>
-            {
-                ClientUpdater.Update();
-            });
-        }
-        else
+        Task.Run(() =>
         {
-            OnStatusUpdate(UpdateStatusEnum.Ready, null);
-        }
+            ClientUpdater.Update();
+        });
     }
 
     private UplConfig Config => ConfigManager<UplConfig>.Instance;
@@ -172,7 +170,6 @@
                     StateText = $"Version : {Config.LocalVersion}";
                     ProgressIndeterminate = false;
                     ProgressValue = 100;
-                    AppState.UpToDate = true;
                     break;
 
             }
@@ -182,7 +179,6 @@
 
     public void Reload()
     {
-        AppState.UpToDate = false;
         Update();
     }
     void OpenSettings()
