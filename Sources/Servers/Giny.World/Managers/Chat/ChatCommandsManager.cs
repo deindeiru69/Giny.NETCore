@@ -105,6 +105,11 @@ namespace Giny.World.Managers.Chat
                 }
                 catch (Exception ex)
                 {
+                    // Log côté serveur (le ReplyError ci-dessous reste générique pour
+                    // ne pas leak de stack trace au joueur). Sans ce log, diagnostiquer
+                    // une commande qui plante revient à deviner — cf. incident
+                    // .patchganymededialog où le world.error.log est resté vide.
+                    Logger.Write("Chat command '" + command.Key.Name + "' threw : " + ex, Channels.Critical);
                     source.Character.ReplyError("Unable to execute command. Server side error");
                 }
             }
