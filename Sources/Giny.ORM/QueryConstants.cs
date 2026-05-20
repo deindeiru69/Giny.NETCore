@@ -35,7 +35,7 @@ namespace Giny.ORM
 
         private static Dictionary<string, string> TypeMapping = new Dictionary<string, string>()
         {
-            { "String", "VARCHAR(255)" },
+            { "String", "MEDIUMTEXT" },
             { "Int16", "SMALLINT" },
             { "Int32", "INT" },
             { "Int64", "BIGINT" },
