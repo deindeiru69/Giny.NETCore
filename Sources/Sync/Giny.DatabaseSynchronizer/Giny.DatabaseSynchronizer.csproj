@@ -28,4 +28,19 @@
     <ProjectReference Include="..\..\Servers\Giny.World\Giny.World.csproj" />
   </ItemGroup>
 
+  <!-- Évite le NETSDK1152 lors du publish : Giny.World.csproj déclare son propre
+       config.Production.example.json en <Content CopyToPublishDirectory>, qui
+       remonte transitivement et entre en conflit avec celui du Synchronizer (même
+       RelativePath). On filtre la copie venant de Giny.World après que la liste
+       ResolvedFileToPublish soit complète mais avant la détection de conflits.
+       Le local au Synchronizer reste, c'est le source de vérité pour ce CLI. -->
+  <Target Name="RemoveTransitiveConfigExample"
+          BeforeTargets="_HandleFileConflictsForPublish">
+    <ItemGroup>
+      <ResolvedFileToPublish
+        Remove="@(ResolvedFileToPublish)"
+        Condition="'%(ResolvedFileToPublish.RelativePath)' == 'config.Production.example.json' AND $([System.String]::Copy('%(ResolvedFileToPublish.FullPath)').Contains('Giny.World'))" />
+    </ItemGroup>
+  </Target>
+
 </Project>
