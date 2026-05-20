@@ -603,6 +603,11 @@ namespace Giny.World.Managers.Fights.Fighters
             {
                 HardcoreManager.Instance.OnCharacterLooseFight(this);
             }
+
+            // Progression des objectives de combat (DefeatMonsterOneFight,
+            // DefeatMulti). Le QuestManager vérifie lui-même que le character
+            // était sur l'équipe gagnante avant d'incrémenter.
+            Giny.World.Managers.Quests.QuestManager.Instance.OnFightEnded(Character, Fight, Fight.Winners);
         }
         public override bool MustSkipTurn()
         {

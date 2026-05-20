@@ -1329,6 +1329,11 @@ namespace Giny.World.Managers.Entities.Characters
                 Party.UpdateMember(this);
             }
 
+            // Progression des objectives DiscoverMap (1 occurrence dans les
+            // quêtes Incarnam 2.68). Le QuestManager filtre lui-même les
+            // quêtes actives et ne fait rien si aucune ne matche.
+            Quests.QuestManager.Instance.OnMapDiscovered(this, this.Map.Id);
+
             // Onboarding Ganymède — au premier OnEnterMap sur la map de spawn
             // d'Incarnam (154010883), ouvre auto le dialogue avec le PNJ
             // Ganymède (TemplateId 4823). Le flag passe à true UNIQUEMENT

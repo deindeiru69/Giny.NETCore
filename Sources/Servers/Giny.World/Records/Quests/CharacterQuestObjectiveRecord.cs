@@ -25,6 +25,20 @@ namespace Giny.World.Records.Quests
             set;
         }
 
+        /// <summary>
+        /// Compteur cumulatif pour les objectives type DefeatMulti (et tout futur
+        /// objective qui exige N occurrences cross-events). Persisté dans le Blob
+        /// CharacterRecord.Quests via ProtoBuf — pas de migration DB nécessaire,
+        /// les anciens characters charges sans ce champ obtiennent Counter=0
+        /// (défaut int).
+        /// </summary>
+        [ProtoMember(3)]
+        public int Counter
+        {
+            get;
+            set;
+        } = 0;
+
         private QuestObjectiveRecord m_record;
 
         public QuestObjectiveRecord Record
