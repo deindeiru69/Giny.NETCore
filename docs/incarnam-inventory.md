@@ -10,8 +10,8 @@ Inventaire automatisé via `tools/IncarnamScan/` (lecture D2O + D2I client Dofus
 - **12 SubAreas** réparties sur **118 maps**
 - **57 NPCs** référencés par les SubAreas (quest-givers et NPCs de scénario)
 - **20 quêtes** ancrées à Incarnam, soit ~100 objectives au total
-- **2 handlers Giny sur 9 types d'objectives utilisés** → ~24 objectives sur 100 sont traquables runtime
-- **Bloquant majeur** : `DefeatMonsterOneFight` (16) + `BringItemToNpc` (16) + `CraftItem` (15). Implémenter ces 3 handlers débloque ~75% du contenu Incarnam.
+- **Handlers serveur** (post-commit `e1e8f581`) : 7 sur 9 types implémentés. Coverage **65/80 = 81%** des objectives runtime-trackables. Seul gap restant : `CraftItem` (15 occurrences).
+- **Positions natives NPCs** : **NON extractibles** depuis les ressources clients (Maps.d2p / .dlm). Cf. section "Sources investiguées" plus bas. Les positions doivent être placées manuellement via `.addnpc` admin ou par un dump SQL externe si on en trouve un.
 
 ---
 
@@ -193,13 +193,58 @@ Le `CharacterQuestObjectiveRecord` actuel n'a pas de champ `Counter` — à ajou
 
 ---
 
-## 7. Comment refaire ce scan
+## 7. Sources investiguées pour les positions natives NPCs
+
+État : **aucune source automatisée disponible**.
+
+### Pcap Ankama
+Impossible — Dofus 2 (classic) est fermé, plus de serveur Ankama actif depuis lequel sniffer.
+
+### Dumps SQL communautaires
+Plusieurs leads vérifiés, aucun pertinent pour Dofus 2.x complet :
+- **Stump** : repo principal 404, miroirs partiels sans données monde
+- **Otomai** : pré-alpha, contenu lacunaire
+- **Araknemu** : ciblé Dofus 1.29 (Retro), schéma incompatible
+- **Autres** : false leads sur fragments anciens / versions incompatibles
+
+### Maps.d2p / .dlm (testé Phase 0 ce commit)
+
+Hypothèse testée : "les .dlm contiennent une référence aux NPCs natifs Ankama, juste non-parsée par Giny.IO".
+
+**Verdict : invalidée.** Preuves via `dotnet run -- --dump-dlm 154010883` (Place d'Incarnam, le spawn) :
+
+| Test | Résultat |
+|---|---|
+| Parse OK | ✅ MapVersion=11, Id=154010883, SubAreaId=450 |
+| Element types présents | **GraphicalElement (988) et SoundElement (0) uniquement** |
+| Element types inconnus | 0 (le parser throw sur unknown — il aurait crashé si NPC existait) |
+| Round-trip parse → reserialize | 24 690 bytes → 24 690 bytes, **byte-equivalent à 4 bytes près** (encryption metadata) |
+| NPC TemplateIds cherchés (58 IDs Incarnam) | **0 match** dans `ElementId` ou `Identifier` |
+| Côté serveur Giny `SpawnNpcs` | Itère **uniquement** `npc_spawns` DB. Aucun fallback `.dlm` |
+
+→ Le format .dlm contient le décor (terrain + fixtures + élements graphiques + ambiance sonore) et la topologie (cellules + voisins). **Aucune référence aux acteurs gameplay** (NPCs, monstres, ressources). Côté Ankama, ces données vivent sur le serveur de jeu, jamais distribuées au client. C'est cohérent avec la sécurité du contenu (un client compromis ne révèle pas le placement des spawns).
+
+### Conclusion stratégique
+
+Les positions doivent être obtenues par **observation directe** sur le client Dofus officiel (impossible désormais) OU par **placement manuel** sur Giny via :
+- `.addnpc <templateId>` chat command (cellule = celle du character au moment de l'appel)
+- WorldEditor (édition de `NpcSpawnRecord` via UI, avec cellId/direction manuels)
+- INSERT SQL direct dans `npc_spawns`
+
+Pour les 57 NPCs Incarnam connus (cf. `npcs.json`), un peuplement complet nécessitera ~57 × placement manuel. **Coût d'une session** : 1-2h pour placer 57 NPCs si on a les bons references visuelles (screenshots wiki, captures pré-fermeture, etc.).
+
+Le mini-probe `--dump-dlm <mapId>` est gardé dans `tools/IncarnamScan/DlmProbe.cs` pour de futures investigations structurelles d'autres maps si besoin.
+
+---
+
+## 8. Comment refaire ce scan
 
 ```bash
 cd tools/IncarnamScan
-dotnet run                              # client à <repo>/Ressources/Dofus/
-dotnet run -- "D:\Path\to\Dofus"        # client custom
-dotnet run -- --probe                   # mode exploratoire (areas, recherche substring)
+dotnet run                                 # scan principal
+dotnet run -- "D:\Path\to\Dofus"           # client custom
+dotnet run -- --probe                      # exploratoire (areas, recherche substring)
+dotnet run -- --dump-dlm 154010883         # analyse structurelle d'un .dlm
 ```
 
 Les JSON sont régénérés dans `tools/IncarnamScan/output/`. Diff via `git diff output/` pour voir l'évolution.
@@ -211,7 +256,7 @@ Quand on ajoutera des handlers (étape 6 plan ci-dessus), il faudra :
 
 ---
 
-## 8. État DB sur la VM (à compléter)
+## 9. État DB sur la VM (à compléter)
 
 SSH non disponible depuis l'environnement de scan. À exécuter depuis ton poste :
 
@@ -228,11 +273,14 @@ ssh deindeiru@deindeiruworld.duckdns.org \
 
 ---
 
-## 9. Workflow de peuplement (post-handlers)
+## 10. Workflow de peuplement
 
-Une fois les handlers Phase 6 implémentés :
+Avec les handlers du commit `e1e8f581` en place et **aucune source automatique pour les positions** (cf. section 7) :
 
-1. **Pour chaque NPC** dans `npcs.json` : `addnpc <templateId>` in-game sur la bonne map (à identifier via le .dlm Ankama si on veut le placement exact, sinon manuel via WorldEditor)
+1. **Placer les NPCs** un par un :
+   - `.addnpc <templateId>` in-game sur la cellule du character (rapide mais fastidieux × 57)
+   - Ou WorldEditor : éditer `NpcSpawnRecord.cellId/direction/mapId` à la main
+   - Ou INSERT SQL direct dans `npc_spawns` si on a une liste cellId/mapId externe (wiki, anciens screenshots)
 2. **Pour chaque NPC** : créer ses `NpcActionRecord` TALK avec `Param1 = <npcMessageId>` choisi parmi son `DialogMessages` D2O (cf. SelectNpcMessageDialog dans WorldEditor)
-3. **Pour chaque quête** dans `quests.json` : INSERT en DB des `QuestRecord` + `QuestStepRecord` + `QuestObjectiveRecord` correspondants. Possible via le DatabaseSynchronizer si on régénère, mais celui-ci écrase tout — risque sur les patches custom existants. Recommandé : importer juste les 20 quêtes Incarnam à la main ou via un patcher dédié `Sources/Modules/Giny.DatabasePatcher/`.
-4. **Tester** : créer un perso, suivre la chaîne de quêtes, vérifier que chaque objective tracke correctement.
+3. **Pour les 20 quêtes** : INSERT en DB des `QuestRecord` + `QuestStepRecord` + `QuestObjectiveRecord` correspondants. Possible via le DatabaseSynchronizer si on régénère, mais celui-ci écrase tout — risque sur les patches custom existants. Recommandé : un patcher dédié dans `Sources/Modules/Giny.DatabasePatcher/` qui INSERT uniquement les 20 quêtes Incarnam, idempotent.
+4. **Tester** : créer un perso, suivre la chaîne de quêtes, vérifier que chaque objective tracke correctement (les 7 types implémentés + Type=None descriptif).

@@ -49,6 +49,19 @@ class Program
             return 0;
         }
 
+        // Mode dump-dlm : `dotnet run -- --dump-dlm <mapId> [clientPath]`
+        if (args.Length > 1 && args[0] == "--dump-dlm")
+        {
+            if (!int.TryParse(args[1], out var mapId))
+            {
+                Console.Error.WriteLine($"Invalid mapId: {args[1]}");
+                return 2;
+            }
+            var probePath = args.Length > 2 ? args[2] : ResolveClientPath();
+            DlmProbe.Run(probePath, mapId);
+            return 0;
+        }
+
         string clientPath = args.Length > 0 ? args[0] : ResolveClientPath();
         string outputDir = Path.Combine(ResolveProjectDir(), "output");
         Directory.CreateDirectory(outputDir);
@@ -328,6 +341,9 @@ class Program
         // 3 ups → <repo>/tools/IncarnamScan/
         return Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
     }
+
+    // Exposé pour DlmProbe (lecture de output/npcs.json).
+    public static string GetOutputDir() => Path.Combine(ResolveProjectDir(), "output");
 
     static string ResolveClientPath()
     {
